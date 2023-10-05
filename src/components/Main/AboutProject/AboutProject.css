@@ -1,0 +1,50 @@
+.about {
+  padding: 110px 70px;
+}
+
+.about__title {
+  margin: 0;
+  padding-bottom: 23px;
+  text-align: left;
+  font-size: 22px;
+  letter-spacing: -0.88px;
+  width: 100%;
+  border-bottom: solid 1px #dadada;
+}
+
+.about__list {
+  display: flex;
+  margin: 0;
+  padding: 70px 0 0 0;
+  gap: 40px;
+  text-align: left;
+  list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding: 90px 50px;
+  }
+
+  .about__list {
+    gap: 30px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .about__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about {
+    padding: 70px 18px;
+  }
+
+  .about__list {
+    padding: 4px 0 0 0;
+    flex-direction: column;
+  }
+}

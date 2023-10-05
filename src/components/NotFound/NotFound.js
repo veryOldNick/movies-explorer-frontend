@@ -10,9 +10,7 @@ function NotFound() {
       <button 
         className="notfound__button"
         onClick={() => {navigate(-1)}}
-      >
-        Назад
-      </button>
+      >Назад</button>
     </main>
   );
 };
