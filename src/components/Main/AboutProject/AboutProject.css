@@ -79,8 +79,6 @@
   flex-basis: 80%;
 }
 
-
-
 @media screen and (max-width: 768px) {
   .about {
     padding: 90px 50px;
@@ -98,8 +96,6 @@
     font-size: 12px;
     line-height: 18px;
   }
-
-
 }
 
 @media screen and (max-width: 600px) {
@@ -129,5 +125,18 @@
     line-height: 16px;
   }
 
+  .about__timeline {
+    margin-top: 60px;
+  }
 
+  .about__timeline-week {
+    font-size: 11px;
+    line-height: 13px;
+    margin-bottom: 10px;
+  }
+
+  .about__timeline-caption {
+    font-size: 11px;
+    line-height: 13px;
+  }
 }
