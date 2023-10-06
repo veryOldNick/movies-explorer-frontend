@@ -18,20 +18,12 @@ function AboutProject() {
           </p>
         </li>
       </ul>
-      <div className="about__scale">
-        <div className="about__week about__week_start">
-          <span className="about__week-lasts about__week-lasts_left">
-            1 неделя
-          </span>
-          <span className="about__week-title">Back-end</span>
+      <div className='about__timeline'>
+            <p className='about__timeline-week about__timeline_left'>1 неделя</p>
+            <p className='about__timeline-week about__timeline_right'>4 недели</p>
+            <p className='about__timeline-caption about__timeline_back'>Back-end</p>
+            <p className='about__timeline-caption about__timeline_front'>Front-end</p>
         </div>
-        <div className="about__week about__week_finish">
-          <span className="about__week-lasts about__week-lasts_right">
-            4 недели
-          </span>
-          <span className="about__week-title">Front-end</span>
-        </div>
-      </div>
     </section>
   );
 }
