@@ -1,0 +1,143 @@
+.about-me {
+  display: flex;
+  justify-content: center;
+  padding: 100px 70px;
+}
+
+.about-me__article {
+  width: 1140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me__info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 66px;
+}
+
+.about-me__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #DADADA;
+}
+
+.about-me__photo {
+  background-size: contain;
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-left: 49px;
+}
+
+.about-me__info-name {
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+.about-me__info-role {
+  margin: 0;
+  padding: 18px 0 0;
+  max-width: 600px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.about-me__info-description {
+  margin: 0;
+  padding: 26px 0 100px;
+  max-width: 600px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;  
+}
+
+.about-me__link {
+  text-decoration: none;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0;
+  transition: 0.5s ease;
+}
+
+.about-me__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 50px;
+  }
+
+  .about-me__info-name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .about-me__info-role {
+    padding-top: 16px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__info-description {
+    padding: 20px 0 87px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about-me {
+    padding: 70px 14px;
+  }
+
+  .about-me__info {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-top: 60px;
+  }
+  
+  .about-me__photo {
+    margin: 0;
+    width: 292px;
+    height: 352px;
+  }
+
+  .about-me__info-name {
+    margin-top: 40px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .about-me__info-role {
+    font-size: 11px;
+    line-height: 16px;
+    padding-top: 20px;
+  }
+
+  .about-me__info-description {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 20px 0 40px;
+  }
+}
