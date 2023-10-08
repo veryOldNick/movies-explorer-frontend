@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import AboutMe from './components/Main/AboutMe/AboutMe';
+import Portfolio from './components/Main/Portfolio/Portfolio';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,7 +12,7 @@ root.render(
     <BrowserRouter>
       <div className='body'>
         {/* <App /> */}
-        <AboutMe />
+        <Portfolio />
       </div>
     </BrowserRouter>
   </React.StrictMode>,
