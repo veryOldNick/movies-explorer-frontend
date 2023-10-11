@@ -37,7 +37,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  background-image: url('../../../images/like_disable.svg');
+  /* background-image: url('../../../images/like_disable.svg'); */
   background-repeat: no-repeat;
   background-position: center;
   width: 30px;
@@ -45,7 +45,7 @@
 }
 
 .movies-card__like_active {
-  background-image: url('../../../images/heart.svg');
+  /* background-image: url('../../../images/heart.svg'); */
 }
 
 .movie-card__duration {
