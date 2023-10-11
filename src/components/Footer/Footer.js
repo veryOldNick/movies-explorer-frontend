@@ -2,9 +2,10 @@ import { useLocation } from 'react-router-dom';
 
 function Footer() {
   const { pathname } = useLocation();
+  const condition = pathname === "/" || pathname === "/movies" || pathname === "/saved-movies"
   return (
     <>
-      {pathname === "/" || pathname === "/movies" || pathname === "/saved-movies" ?
+      { condition ?
         <footer className='footer'>
           <div className='footer__container'>
             <h3 className='footer__title'>

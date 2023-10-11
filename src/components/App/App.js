@@ -11,7 +11,7 @@ import Main from '../Main/Main.js'
 // import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound.js';
 // import SavedMovies from '../SavedMovies/SavedMovies';
-// import Movies from '../Movies/Movies';
+import Movies from '../Movies/Movies';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,7 +29,7 @@ function App() {
         <Route path='/' element={<Main />} />
         {/* <Route path='/signup' element={<Register setLoggedIn={setLoggedIn} />} /> */}
         {/* <Route path='/signin' element={<Login setLoggedIn={setLoggedIn} />} /> */}
-        {/* <Route path='/movies' element={<Movies />} /> */}
+        <Route path='/movies' element={<Movies />} />
         {/* <Route path='/saved-movies' element={<SavedMovies />} /> */}
         {/* <Route path='/profile' element={<Profile />} /> */}
         <Route exact path='*' element={<NotFound />} />

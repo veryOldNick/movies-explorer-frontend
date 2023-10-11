@@ -4,7 +4,7 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 function Movies() {
   return (
     <main className='movies' aria-label='Страница поиска фильмов'>
-      <SearchForm />
+      {/* <SearchForm /> */}
       {/* <MoviesCardList /> */}
     </main>
   );

@@ -1,34 +1,35 @@
 import logo from '../../images/logo.svg';
-import React from "react";
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import './Header.css';
+import Navigation from '../Navigation/Navigation';
 
+function Header({ loggedIn }) {
+  const { pathname } = useLocation();
 
-function Header({email, onLogout}) {
+  const condition = (
+    pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/profile')
+
   return (
-    <header className="header">
-    <Routes>
-      <Route 
-        path='/sign-in' 
-        // element={<Link to='/sign-up' className='header__link'>Регистрация</Link>} 
-      />
-      <Route 
-        path='/sign-up' 
-        // element={<Link to='/sign-in' className='header__link'>Войти</Link>} 
-      />
-      <Route 
-        path="/" 
-        // element={
-        //   <nav className="header__nav">
-        //     <span className="header__email">{email}</span>
-        //     <Link className="header__button" to="/sign-in" onClick={onLogout}>Выйти</Link>
-        //   </nav>}
-        element={
-          <img src={logo} alt="изображение логотипа" className="header__logo"/>
-        }
-      />
-    </Routes>
-  </header>
-  )
-};
+    <header className={`header ${pathname === "/" && "header_color"}`}>
+      { condition ?
+        <div className="header__container">
+          <Link className="header__logo" to="/" />
+          {/* <Link className="header__logo" to="/" >
+            <img src={logo} alt="изображение логотипа" className="header__logo"/>
+          </Link> */}
+          {
+            loggedIn ? <Navigation /> : 
+              <div className="header__links-main">
+                <Link to="/signup" className={`header__link-main ${pathname === "/" ? "header__link-main_type_signup" : ''}`}>
+                  Регистрация
+                </Link>
+                <Link to="/signin" className="header__link-main header__link-main_type_signin" >Войти</Link>
+              </div>
+          }
+        </div>
+        : ''}
+    </header>
+  );
+}
 
 export default Header;
