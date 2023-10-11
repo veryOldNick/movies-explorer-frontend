@@ -1,12 +1,12 @@
 .notfound {
+  padding: 246px 0 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 246px 0 60px;
   height: 100%;
 }
 
-.notfound__title {
+.notfound__title {  
   margin: 0 auto;
   font-weight: 400;
   font-size: 140px;
@@ -17,18 +17,20 @@
   margin: 0 auto;
   padding-top: 5px;
   font-size: 16px;
-  line-height: 19px;  
+  line-height: 19px;
+  font-weight: 400;  
 }
 
 .notfound__button {
   font-size: 14px;
   line-height: 17px;
+  font-weight: 400;
   color: #4285f4;
   margin-top: 184px;
   border: none;
-  background-color: white;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
+  background-color: transparent;
 }
 
 .notfound__button:hover {

@@ -4,15 +4,14 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import MoviesCardList from './components/Movies/MoviesCardList/MoviesCardList';
+import Movies from './components/Movies/Movies';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <div className='body'>
-        {/* <App /> */}
-        <MoviesCardList />
+        <App />
       </div>
     </BrowserRouter>
   </React.StrictMode>,

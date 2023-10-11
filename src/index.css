@@ -7,6 +7,7 @@
 @import url(./components/Header/Header.css);
 @import url(./components/NotFound/NotFound.css);
 
+@import url(./components/Main/Main.css);
 @import url(./components/Main/Promo/Promo.css);
 @import url(./components/Main/AboutProject/AboutProject.css);
 @import url(./components/Main/Techs/Techs.css);
@@ -16,3 +17,7 @@
 @import url(./components/Movies/Movies.css);
 @import url(./components/Movies/MoviesCardList/MoviesCardList.css);
 @import url(./components/Movies/MoviesCard/MoviesCard.css);
+@import url(./components/Movies/SearchForm/SearchForm.css);
+@import url(./components/FilterCheckbox/FilterCheckbox.css);
+
+@import url(./components/Login/Login.css);
