@@ -1,6 +1,5 @@
 import logo from '../../images/logo.svg';
 import { Link, useLocation } from 'react-router-dom';
-import './Header.css';
 import Navigation from '../Navigation/Navigation';
 
 function Header({ loggedIn }) {

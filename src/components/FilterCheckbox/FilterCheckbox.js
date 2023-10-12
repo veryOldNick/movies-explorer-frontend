@@ -7,7 +7,7 @@ function FilterCheckbox() {
         id='toggle' 
         defaultChecked 
         aria-label='Поиск короткометражек'
-        />
+      />
       <label htmlFor='toggle' className="checkbox__switch"></label>
       <span htmlFor="toggle" className="checkbox__label">Короткометражки</span>
     </div>

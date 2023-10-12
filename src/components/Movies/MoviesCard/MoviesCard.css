@@ -28,31 +28,39 @@
   text-overflow: ellipsis;
   color: #fff;
   font-size: 13px;
-  font-weight: 500;
   line-height: 16px;
+  font-weight: 500;
   flex-basis: 206px;
 }
 
 .movies-card__like {
-  background: none;
-  border: none;
+  box-sizing: border-box;
+  display: block;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-color: transparent;
   cursor: pointer;
-  /* background-image: url('../../../images/like_disable.svg'); */
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 30px;
-  height: 30px;
 }
 
 .movies-card__like_active {
-  /* background-image: url('../../../images/heart.svg'); */
+  background-color: #2be080;
+}
+
+.movies-card__like_delete {
+  background-image: url('../../../images/delete.svg');
+  background-color: transparent;
+  border: none;
+  background-position: center;
 }
 
 .movie-card__duration {
   margin: 0;
-  padding: 0 0 16px 16px;
+  padding: 0 0 14px 12px;
   font-size: 11px;
   line-height: 13px;
   text-align: left;
+  font-weight: 400;
   color: #8b8b8b;
 }

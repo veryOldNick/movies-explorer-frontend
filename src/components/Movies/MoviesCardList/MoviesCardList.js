@@ -3,9 +3,9 @@ import MoviesCard from '../MoviesCard/MoviesCard'
 function MoviesCardList() {
   return (
     <>
-      <section className='movies' aria-label='Коллекция фильмов'>
-        <p className='movies__notfound'>Ничего не найдено</p>
-        <ul className='movies__list'>
+      <section className='movies-card' aria-label='Коллекция фильмов'>
+        <p className='movies-card__notfound'>Ничего не найдено</p>
+        <ul className='movies-card__list'>
           <MoviesCard />
           <MoviesCard />
           <MoviesCard />
