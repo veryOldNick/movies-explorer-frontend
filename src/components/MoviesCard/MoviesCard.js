@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import img from "../../../images/movie_shot.jpg";
+import img from "../../images/movie_shot.jpg";
 
 export default function MoviesCard() {
   const { pathname } = useLocation();

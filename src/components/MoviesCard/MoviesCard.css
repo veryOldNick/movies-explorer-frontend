@@ -49,7 +49,7 @@
 }
 
 .movies-card__like_delete {
-  background-image: url('../../../images/delete.svg');
+  background-image: url('../../images/delete.svg');
   background-color: transparent;
   border: none;
   background-position: center;

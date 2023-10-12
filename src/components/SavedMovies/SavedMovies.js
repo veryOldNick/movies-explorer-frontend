@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-
-function Movies() {
+function SavedMovies() {
   return (
-    <main className='movies' aria-label='коллекция'>
+    <main className="saved-movies" aria-label="Сохранённые фильмы">
       <SearchForm />
       <MoviesCardList />
     </main>
-  );
+  )
 }
 
-export default Movies;
+export default SavedMovies
