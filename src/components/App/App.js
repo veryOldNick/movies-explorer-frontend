@@ -8,7 +8,7 @@ import Header from '../Header/Header.js'
 import Main from '../Main/Main.js'
 // import Register from '../Register/Register';
 // import Login from '../Login/Login';
-// import Profile from '../Profile/Profile';
+import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound.js';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Movies from '../Movies/Movies';
@@ -31,7 +31,7 @@ function App() {
         {/* <Route path='/signin' element={<Login setLoggedIn={setLoggedIn} />} /> */}
         <Route path='/movies' element={<Movies />} />
         <Route path='/saved-movies' element={<SavedMovies />} />
-        {/* <Route path='/profile' element={<Profile />} /> */}
+        <Route path='/profile' element={<Profile />} />
         <Route exact path='*' element={<NotFound />} />
       </Routes>
       <Footer />
