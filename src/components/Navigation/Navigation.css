@@ -1,0 +1,231 @@
+.header__navigation {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  align-items: center;
+}
+
+.header__link {
+  padding: 0;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.header__link:hover {
+  opacity: 0.7;
+}
+
+.header__link_active {
+  border-bottom: 2px solid  #FFF;
+  font-weight: 500;
+}
+
+.header__img-account {
+  height: 30px;
+  width: 26px;
+  margin-left: 16px;
+  display: block;
+  background-image: url(../../images/icon-main.svg);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header__link_account {
+  display: flex;
+  align-items: center;
+}
+
+.header__menu {
+  max-width: 44px;
+  width: 100%;
+  max-height: 44px;
+  height: 100%;
+  display: none;
+  align-items: center;  
+}
+
+.header__menu-button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  background-image: url(../../images/heder-menu.svg);
+  background-color: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+}
+
+@media screen and (max-width: 786px) {
+  .header__menu {
+    display: block;
+  }
+
+  .header__navigation, .header__link_account {
+    display: none;
+  }    
+}
+
+.navigation {
+  top: 0;
+  right: 0;
+  min-width: 320px;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, .5);
+  transition: visibility 0s, opacity .3s linear;
+}
+
+.navigation_visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.navigation__container {
+  right: 0;
+  top: 0;
+  max-width: 520px;
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #202020;
+  justify-content: space-between;  
+  z-index: 0;  
+}
+
+.navigation__button {
+  display: flex;
+}
+
+.navigation__button_close {
+  right: 0;
+  top: 0;
+  height: 22px;
+  width: 22px;
+  margin: 27px 27px 0 0;
+  padding: 0;
+  position: absolute;
+  background-image: url(../../images/heder-menu-close.svg);
+  background-color: #202020;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;  
+}
+
+.navigation__button_close:hover {
+  opacity: 0.5;
+}
+
+.navigation__links {
+  margin: 0;
+  padding: 0;
+  top: 154px;
+  max-width: 340px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;  
+}
+
+.navigation__link {
+  margin: 0 0 20px;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFF;
+  text-decoration: none;  
+  cursor: pointer;  
+}
+
+.navigation__link:hover {
+  border-color: #FFF;
+}
+
+.navigation__link_active {
+  border-color: #FFF;
+}
+
+.navigation__account-link {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.navigation__account-link:hover {
+  opacity: 0.7;
+}
+
+.navigation__button_account {
+  bottom: 92px;
+  padding: 0;
+  margin: 0;
+  justify-content: space-between;
+  position: absolute;  
+}
+
+.navigation__img-account {
+  height: 30px;
+  width: 26px;
+  margin: 0 0 0 17px;
+  display: block;
+  background: #202020;
+  background-image: url(../../images/icon-main.svg);
+  background-repeat: no-repeat;
+  background-position: center;  
+  border: none;
+  float: right;  
+}
+
+@media screen and (max-width: 500px) {
+
+  .navigation__button_close {
+      margin: 18px 18px 0 0;
+  }
+
+  .navigation__link {
+      padding: 6px 0;
+      margin: 0 0 10px;
+  }
+
+  .navigation__links {
+      max-width: 300px;
+      top: 140px;
+  }
+
+  .navigation__container {
+      width: 100%;
+  }
+
+  .navigation__button_account {
+      bottom: 32px;
+  } 
+}

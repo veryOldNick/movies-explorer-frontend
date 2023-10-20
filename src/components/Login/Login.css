@@ -1,0 +1,29 @@
+.login {
+  max-width: 396px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.login__container{
+  margin: 70px 0;
+}
+
+@media screen and (max-width: 786px) {
+  .login__container {
+    margin-top: 232px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .login{    
+    margin: 0 auto;
+    padding-top: 56px;
+    text-align: center;
+  }
+
+  .login__container {
+    margin: 0 auto 30px;
+    text-align: center;
+    max-width: calc(100% - 60px);
+  }
+}
