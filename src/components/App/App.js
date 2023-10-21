@@ -1,8 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer.js'
 import Header from '../Header/Header.js'
 import Main from '../Main/Main.js'
@@ -16,8 +13,7 @@ import Movies from '../Movies/Movies';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const location = useLocation();
-  // const [isLoading, setIsLoading] = useState(false);
-
+  
   useEffect(
     () => {if (location.pathname === '/') {setLoggedIn(false)}}, [location]
   );
@@ -40,5 +36,3 @@ function App() {
 };
 
 export default App;
-
-

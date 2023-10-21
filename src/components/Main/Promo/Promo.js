@@ -14,7 +14,7 @@ function Promo() {
           Узнать больше
         </a>
       </div>
-      <img className='promo__img' alt='web Глобус' src = {logo}/>
+      <img className='promo__img' alt='Глобус' src = {logo}/>
     </section>
   );
 }

@@ -4,13 +4,8 @@ function Profil() {
   const [name, setName] = useState('Виталий');
   const [email, setEmail] = useState('ya@ya.ru');
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+  function handleNameChange(event) {setName(event.target.value)};
+  function handleEmailChange(event) {setEmail(event.target.value)};
 
   return (
     <section className='profile'>
@@ -45,7 +40,7 @@ function Profil() {
           type='button' 
           className='profile__link profile__link profile__link-edit' 
           href='/' 
-          aria-label='Редактировать профиль'
+          aria-label='Edit'
         >
           Редактировать
         </button>
@@ -53,7 +48,7 @@ function Profil() {
           type='button' 
           className='profile__link profile__link-exit' 
           href='/signout' 
-          aria-label='Выйти из аккаунта'
+          aria-label='Log-out'
         >
           Выйти из аккаунта
         </button>

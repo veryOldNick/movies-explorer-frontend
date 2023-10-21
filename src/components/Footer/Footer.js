@@ -6,6 +6,7 @@ function Footer() {
   return (
     <>
       { condition ?
+        (
         <footer className='footer'>
           <div className='footer__container'>
             <h3 className='footer__title'>
@@ -24,7 +25,8 @@ function Footer() {
             </div>
           </div>
         </footer>
-      : ''}
+        ):('')
+      }
     </>
   );
 };

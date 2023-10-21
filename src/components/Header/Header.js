@@ -1,9 +1,8 @@
-// import logo from '../../images/logo.svg';
+import logo from '../../images/logo.svg';
 import { Link, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 
 function Header({ loggedIn }) {
-  console.log("Header, не забыть исправить логику навигации")
   const { pathname } = useLocation();
 
   const condition = (
@@ -12,14 +11,13 @@ function Header({ loggedIn }) {
   return (
     <header className={`header ${pathname === "/" && "header_color"}`}>
       { condition ?
+        (
         <div className="header__container">
-          <Link className="header__logo" to="/" />
-          {/* <Link className="header__logo" to="/" >
+          <Link className="header__logo" to="/" >
             <img src={logo} alt="изображение логотипа" className="header__logo"/>
-          </Link> */}
-          {
-            /*временная схема на период верстки*/
-            !loggedIn ? <Navigation /> : 
+          </Link>
+          {            
+            loggedIn ? <Navigation /> : 
               <div className="header__links-main">
                 <Link to="/signup" className={`header__link-main ${pathname === "/" ? "header__link-main_type_signup" : ''}`}>
                   Регистрация
@@ -28,7 +26,8 @@ function Header({ loggedIn }) {
               </div>
           }
         </div>
-        : ''}
+        ):('')
+      }
     </header>
   );
 }
