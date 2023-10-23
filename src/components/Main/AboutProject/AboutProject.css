@@ -53,13 +53,13 @@
   font-size: 14px;
 }
 
-.about__timeline_left {
+.about__timeline-week_left {
   flex-basis: 20%;
   background-color: #3ddc84;
   color: #000;
 }
 
-.about__timeline_right {
+.about__timeline-week_right {
     flex-basis: 80%;
     background-color: #303030;
     color: #FFF;
@@ -74,11 +74,11 @@
   font-weight: 500;
 }
 
-.about__timeline_back{
+.about__timeline-caption_back{
     flex-basis: 20%;
   }
 
-.about__timeline_front{
+.about__timeline-caption_front{
   flex-basis: 80%;
 }
 

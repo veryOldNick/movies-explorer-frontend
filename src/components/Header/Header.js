@@ -13,7 +13,7 @@ function Header({ loggedIn }) {
       { condition ?
         (
         <div className="header__container">
-          <Link className="header__logo" to="/" >
+          <Link to="/" >
             <img src={logo} alt="изображение логотипа" className="header__logo"/>
           </Link>
           {            

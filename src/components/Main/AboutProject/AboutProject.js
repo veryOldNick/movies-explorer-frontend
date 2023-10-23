@@ -19,10 +19,10 @@ function AboutProject() {
         </li>
       </ul>
       <div className='about__timeline'>
-            <p className='about__timeline-week about__timeline_left'>1 неделя</p>
-            <p className='about__timeline-week about__timeline_right'>4 недели</p>
-            <p className='about__timeline-caption about__timeline_back'>Back-end</p>
-            <p className='about__timeline-caption about__timeline_front'>Front-end</p>
+            <p className='about__timeline-week about__timeline-week_left'>1 неделя</p>
+            <p className='about__timeline-week about__timeline-week_right'>4 недели</p>
+            <p className='about__timeline-caption about__timeline-caption_back'>Back-end</p>
+            <p className='about__timeline-caption about__timeline-caption_front'>Front-end</p>
         </div>
     </section>
   );

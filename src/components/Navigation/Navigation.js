@@ -49,7 +49,6 @@ function Navigation() {
           onClick={handleOpenMenu}
         ></button>
       </div>
-      {/* </NavMenu> */}
       <div className={`navigation ${isMenu ? 'navigation_visible' : ''}`}>
         <div className='navigation__container'>
           <div className='navigation__button'>
