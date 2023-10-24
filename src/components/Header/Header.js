@@ -9,7 +9,7 @@ function Header({ loggedIn }) {
     pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/profile')
 
   return (
-    <header className={`header ${pathname === "/" && "header_color"}`}>
+    <header className={`header ${pathname === "/" ? "header_color" : ''}`}>
       { condition ?
         (
         <div className="header__container">

@@ -53,7 +53,7 @@ function Navigation() {
         <div className='navigation__container'>
           <div className='navigation__button'>
             <button 
-              className='navigation__button_close' 
+              className='navigation__close-button' 
               onClick={handleCloseMenu}
             ></button>
           </div>

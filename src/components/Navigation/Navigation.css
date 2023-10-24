@@ -116,7 +116,7 @@
   display: flex;
 }
 
-.navigation__button_close {
+.navigation__close-button {
   right: 0;
   top: 0;
   height: 22px;
@@ -133,7 +133,7 @@
   transition: opacity 0.3s ease-in-out;  
 }
 
-.navigation__button_close:hover {
+.navigation__close-button:hover {
   opacity: 0.5;
 }
 
@@ -208,7 +208,7 @@
 
 @media screen and (max-width: 500px) {
 
-  .navigation__button_close {
+  .navigation__close-button {
       margin: 18px 18px 0 0;
   }
 
