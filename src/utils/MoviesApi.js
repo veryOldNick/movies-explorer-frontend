@@ -1,7 +1,5 @@
 export const SERVER_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 
-// export const BASE_URL = 'http://localhost:3001';
-
 function checkResponse(res) {
 	if (!res.ok) {
 		return Promise.reject(`Ошибка: ${res.status}`);
