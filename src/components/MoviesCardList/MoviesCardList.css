@@ -1,20 +1,25 @@
-.movies-card {
-  padding: 70px 70px 30px;
+.movie-cards {
+  margin: 0 auto;
+  width: 1140px;
   display: flex;
-  justify-content: center;  
+  align-items: center;
+  padding: 70px 70px 30px;
 }
 
-.movies-card__notfound {
-  display: none;
-  margin: 0 auto;
+.movie-cards__not-found {
+  display: flex;
+  justify-content: center;
   font-size: 15px;
   font-weight: 500;
+  line-height: normal;
 }
 
-.movies-card__list {
+
+.movie-cards__container {
   margin: 0;
+  flex: 1 1;
+  width: 100%;;
   padding: 0;
-  max-width: 1140px;
   list-style-type: none;
   display: grid;
   column-gap: 20px;
@@ -24,22 +29,20 @@
 
 .more-cards {
   margin: 0;
-  padding-top: 50px;
+  padding: 50px 0 80px;
   display: flex;
   justify-content: center;
 }
 
 .more-cards__button {
-  height: 36px;
-  width: 320px;
   padding: 0;
-  margin: 60px 70px 80px;
   font-size: 12px;
   line-height: 15px;
   background-color: transparent;
-  border-radius: 6px; 
   color: #fff;
   border: 1px #424242 solid;
+  height: 36px;
+  width: 320px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
 }
@@ -48,25 +51,41 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 786px) {
-  .movies-card {
-    padding: 62px 30px 30px;
+@media screen and (max-width: 1000px) {
+  .movie-cards {
+    padding: 70px 30px 30px;
   }
 
-  .movies-card__list {
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 30px;
-    row-gap: 30px;
+  .movie-cards__container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (max-width: 600px) {
-  .movies-card {
-    padding: 40px 10px 26px;
+@media screen and (max-width: 320px) {
+  .more-cards {
+      padding: 50px 10px 80px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+   .movie-cards__container  {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 30px;
+      row-gap: 36px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .movie-cards {
+    padding: 40px 10px 30px;
   }
 
-  .movies-card__list  {
+  .movie-cards__container  {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 20px;
   }
-} 
+
+  .more-cards {
+    padding: 50px 40px 80px;
+  }
+}

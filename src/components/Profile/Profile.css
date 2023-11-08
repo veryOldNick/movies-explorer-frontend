@@ -46,10 +46,30 @@
   transition: all 0.1s ease-in-out;
 }
 
+.profile__input::placeholder {
+  font-size: 11px;
+}
+
 .profile__input:focus, .profile__input:focus {
   border-radius: 5px;
   border: 1px solid #a2a2a2;
 }
+
+.profile__error-message{
+  display: flex;
+  justify-content: end;
+  color: #EE3465;
+  font-size: 11px;
+  height: 14px;
+  font-weight: 400;
+  width:100%;
+}
+
+.profile__buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 176px auto 0;
+  }
 
 .profile__link {
   border: none;
@@ -71,13 +91,39 @@
 } 
 
 .profile__link-edit {
-  margin: 220px auto 0;
   color: #FFF;
 }
 
 .profile__link-exit {
   margin: 16px auto 0;
   color: #EE3465;
+}
+
+.profile__error {
+  margin: 189px auto 0;
+  padding: 0;
+  display: block;
+  color: #ff004c;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.profile__notifaction {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  margin-bottom: 20px;
+  min-height: 14px;
+}
+
+.profile__notifaction_type_error {
+  color: #FF004C; 
+}
+
+.profile__notifaction_type_sucсess {
+  color: #3DDC84;
 }
 
 .profile__button {
@@ -93,6 +139,16 @@
   border-radius: 3px;
 }
 
+.profile__button_disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.profile__button_active {
+  background-color: #4285F4;
+  color: #c2c2c2;
+}
+
 @media screen and (max-width: 786px) {
   .profile__container {
     padding-top: 236px;
@@ -100,8 +156,8 @@
   .profile__title {
     margin-bottom: 96px;
   }
-  .profile__link-edit {
-    margin-top: 210px;
+  .profile__buttons {
+    margin-top: 166px;
   }
 }
 
@@ -115,9 +171,11 @@
   .profile__title {
     margin-bottom: 82px;
   }
-  .profile__link-edit {
-    margin-top: 379px;
+
+  .profile__buttons {
+    margin-top: 335px;
   }
+
   .profile__link {
     font-size: 12px;
   }
