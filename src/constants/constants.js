@@ -7,18 +7,14 @@ const DATA_NOT_CHANGED_ERROR = 'Такие данные уже использу�
 const NOT_FOUND_ERROR = 'Страница по указанному маршруту не найдена';
 const SERVER_ERROR = 'Ошибка сервера';
 
-const SHORT_DURATION = 40;
-const ONEMORE = 1;
-const RESOLUTION_L = 1000;
-const RESOLUTION_M = 800;
-const RESOLUTION_S = 500;
-const START_ITEMS_L = 16;
-const START_ITEMS_M = 12;
-const START_ITEMS_S = 8;
-const START_ITEMS_XS = 5;
-const ADDITIONAL_ITEMS_L = 4;
-const ADDITIONAL_ITEMS_M = 3;
-const ADDITIONAL_ITEMS_S = 2;
+const BIG_SCREEN_SIZE = 1220;
+const SMALL_SCREEN_SIZE = 760;
+const CARDS_QUANTITY_DESKTOP = 12;
+const CARDS_QUANTITY_TABLET = 8;
+const CARDS_QUANTITY_MOBILE = 5;
+const CARDS_MORE_DESKTOP = 3;
+const CARDS_MORE_MOBILE = 2;
+const SHORT_MOVIES_DURATION = 40;
 
 const CONFLICT_ERR = 409;
 const UNAUTHORIZED_ERR = 401;

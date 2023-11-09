@@ -6,18 +6,15 @@ import { getAllMovies } from '../../utils/MoviesApi'
 import { useResize } from '../../utils/CheckResize';
 
 import{
-SHORT_DURATION,
-ONEMORE,
-RESOLUTION_L,
-RESOLUTION_M,
-RESOLUTION_S,
-START_ITEMS_L,
-START_ITEMS_M,
-START_ITEMS_S,
-START_ITEMS_XS,
-ADDITIONAL_ITEMS_L,
-ADDITIONAL_ITEMS_M,
-ADDITIONAL_ITEMS_S} from '../../constants/constants'
+  BIG_SCREEN_SIZE,
+  SMALL_SCREEN_SIZE,
+  CARDS_QUANTITY_DESKTOP,
+  CARDS_QUANTITY_TABLET,
+  CARDS_QUANTITY_MOBILE,
+  CARDS_MORE_DESKTOP,
+  CARDS_MORE_MOBILE,
+  SHORT_MOVIES_DURATION,
+} from '../../constants/constants'
 
 
 function Movies({
@@ -38,13 +35,15 @@ function Movies({
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [preloaderOn, setPreloaderOn] = useState(false);
   const [shortMovies, setShortMovies] = useState([]);
-  const [startItems, setStartItems] = useState(5);;
-  const [addItems, setAddItems] = useState(2);
+  // const [startItems, setStartItems] = useState(5);;
+  // const [addItems, setAddItems] = useState(2);
+  const [startItems, setVisibleCount] = useState(CARDS_QUANTITY_DESKTOP);
+  const [addItems, setLoadMoreCount] = useState(CARDS_MORE_DESKTOP);
   const [buttonMore, setButtonMore] = useState(false);
   const windowWidth = useResize();
 
   useEffect(() => {
-    settingAmountFilms();
+    // settingAmountFilms();
     handleShowButtonMore(startItems);
   }, [windowWidth]);
 
@@ -80,7 +79,7 @@ function Movies({
   }
   
   function checkshowButtonMore(moviesArr, InitialMovies) {
-    moviesArr.length >= InitialMovies + ONEMORE ?
+    moviesArr.length >= InitialMovies + 1 ?
       setButtonMore(true) : setButtonMore(false);
   }
 
@@ -90,11 +89,12 @@ function Movies({
     checkshowButtonMore(searchedMovies, InitialMovies);
   }
 
+  // Больше фильмов
   function handleClickMore() {
     const allMovies = startItems + addItems;
-    setStartItems(allMovies);
+    setVisibleCount(allMovies);
     handleShowButtonMore(allMovies);
-  }
+  };
 
   
   function handleNotMoviesResult() {
@@ -110,7 +110,7 @@ function Movies({
 
   function filterMovies(moviesArr, text, filter) {
     return moviesArr.filter(movie => movie.nameRU.toLowerCase().includes(text.toLowerCase()) &&
-      (filter ? movie.duration < SHORT_DURATION : true));
+      (filter ? movie.duration < SHORT_MOVIES_DURATION : true));
   }
 
 
@@ -151,7 +151,7 @@ function Movies({
     } else {
       setPreloaderOn(true);
       setIsValid(true);
-      settingAmountFilms();
+      // settingAmountFilms();
       if (movies.length > 0) {
         setButtonDisabled(false);
         setPreloaderOn(false);
@@ -177,23 +177,32 @@ function Movies({
     evt.preventDefault();
     findMovies(!checkedShort);
   }
+  // количество показываемых карточек на странице в зависимости от ширины экрана
 
-  function settingAmountFilms() {
-    if (windowWidth >= RESOLUTION_L) {
-      setStartItems(START_ITEMS_L);
-      setAddItems(ADDITIONAL_ITEMS_L);
-    } else if (windowWidth >= RESOLUTION_M) {
-      setStartItems(START_ITEMS_M);
-      setAddItems(ADDITIONAL_ITEMS_M);
-    } else if (windowWidth >= RESOLUTION_S) {
-      setStartItems(START_ITEMS_S);
-      setAddItems(ADDITIONAL_ITEMS_S);
-    } else {
-      setStartItems(START_ITEMS_XS);
-      setAddItems(ADDITIONAL_ITEMS_S);
-    }
-  }
+   useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
 
+      if (screenWidth <= SMALL_SCREEN_SIZE) {
+        setVisibleCount(CARDS_QUANTITY_MOBILE);
+        setLoadMoreCount(CARDS_MORE_MOBILE);
+      } else if (screenWidth <= BIG_SCREEN_SIZE) {
+        setVisibleCount(CARDS_QUANTITY_TABLET);
+        setLoadMoreCount(CARDS_MORE_MOBILE);
+      } else {
+        setVisibleCount(CARDS_QUANTITY_DESKTOP);
+        setLoadMoreCount(CARDS_MORE_DESKTOP);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+    
   return (
     <main className='movies' aria-label='Страница поиска фильмов'>
       <SearchForm 
@@ -219,6 +228,5 @@ function Movies({
     </main>
   );
 }
-
 
 export default Movies;
