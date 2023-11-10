@@ -7,13 +7,7 @@ const DATA_NOT_CHANGED_ERROR = 'Такие данные уже использу�
 const NOT_FOUND_ERROR = 'Страница по указанному маршруту не найдена';
 const SERVER_ERROR = 'Ошибка сервера';
 
-const BIG_SCREEN_SIZE = 1220;
-const SMALL_SCREEN_SIZE = 760;
-const CARDS_QUANTITY_DESKTOP = 12;
-const CARDS_QUANTITY_TABLET = 8;
-const CARDS_QUANTITY_MOBILE = 5;
-const CARDS_MORE_DESKTOP = 3;
-const CARDS_MORE_MOBILE = 2;
+
 const SHORT_MOVIES_DURATION = 40;
 
 const CONFLICT_ERR = 409;
@@ -30,18 +24,10 @@ export {
   DATA_NOT_CHANGED_ERROR,
   NOT_FOUND_ERROR,
   SERVER_ERROR,
-  SHORT_DURATION,
-  ONEMORE,
-  RESOLUTION_L,
-  RESOLUTION_M,
-  RESOLUTION_S,
-  START_ITEMS_L,
-  START_ITEMS_M,
-  START_ITEMS_S,
-  START_ITEMS_XS,
-  ADDITIONAL_ITEMS_L,
-  ADDITIONAL_ITEMS_M,
-  ADDITIONAL_ITEMS_S,
+
+
+
+  SHORT_MOVIES_DURATION,
   CONFLICT_ERR,
   UNAUTHORIZED_ERR,
 
