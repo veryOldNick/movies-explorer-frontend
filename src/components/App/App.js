@@ -14,19 +14,22 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 
 import { checkToken, getUserInfo, getSavedMovies} from '../../utils/MainApi'
+import { getAllMovies } from '../../utils/MoviesApi';
 
 function App() {
   const {pathname} =useLocation();
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' });
-  const [isTokenOk, setIsTokenOk] = useState(false);
-  const [likedMovies, setLikedMovies] = useState([]);
-  const [movies, setMovies] = useState([]);
+
+  const [loggedIn, setLoggedIn] = useState(false); // статус логина
+  const [isLoading, setIsLoading] = useState(false); // статус загрузки
+  const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' }); // текущий юзер 
+  const [likedMovies, setLikedMovies] = useState([]); // любимые фильмы
+  const [movies, setAllMovie] = useState([]); // фильмы с серера
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [notMoviesResult, setNotMoviesResult] = useState(false);
   const [checkedShort, setCheckedShort] = useState(false);
+
+ 
   
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -39,7 +42,6 @@ function App() {
             localStorage.setItem('email', res.email);
             localStorage.setItem('ownerId', res._id);
             setLoggedIn(true);
-            setIsTokenOk(true);
             navigate(pathname, { replace: true });
           } else {
             return Promise.reject(res.status);
@@ -71,19 +73,46 @@ function App() {
     }
   }, [pathname, loggedIn])
 
+  // --------//
 
-  useEffect(() => {
-    if (loggedIn) {
+    // Получение карточек фильмов 
+    useEffect(() => {
+      function loadAllMovies() {
+        setIsLoading(true);
+        getAllMovies()
+          .then((res) => {setAllMovie(res)})
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          })        
+    };
+
+    function loadLikeMovies() {
+      setIsLoading(true);
       getSavedMovies()
         .then((res) => {
           setLikedMovies(res.filter(movie => movie.owner === currentUser.ownerId));
-          console.log('успех')
+          // console.log('успех app-82');
+          // console.log(res);
         })
         .catch((err) => {
           console.log(err);
         })
-    }  
-  }, [isTokenOk])
+        .finally(() => {
+          setIsLoading(false);
+        })
+    };  
+    
+    if (loggedIn) {
+      loadAllMovies();
+      loadLikeMovies();
+    }
+  }, [loggedIn]);
+
+    
+// --------//
 
   function onSignOut() {
     localStorage.removeItem('token');
@@ -95,9 +124,8 @@ function App() {
     localStorage.removeItem('checkedShort');
     localStorage.removeItem('ownerId');
     setLoggedIn(false);
-    setIsTokenOk(false);
     setCurrentUser({ name: '', email: '', ownerId: '' });
-    setMovies([]);
+    setAllMovie([]);  //??
     setSearchedMovies([]);
     setNotMoviesResult(false);
     navigate('/', { replace: true });
@@ -125,49 +153,55 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/signup'element={
-          <Register 
-          setLoggedIn={setLoggedIn}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          setCurrentUser={setCurrentUser}
-          />}
-        />
+          <Register
+            // V
+            setLoggedIn={setLoggedIn}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            setCurrentUser={setCurrentUser}
+          />
+        }/>
         <Route path='/signin' element={
-          <Login 
-          setLoggedIn={setLoggedIn} 
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          setCurrentUser={setCurrentUser} />} 
-        />
+          <Login
+            // V
+            setLoggedIn={setLoggedIn}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            setCurrentUser={setCurrentUser} 
+          />
+        }/>
         <Route path='/movies' element={
             <ProtectedRouteElement
-            element={Movies}
-            movies={movies}
-            setMovies={setMovies}
-            loggedIn={loggedIn}
-            likedMovies={likedMovies}
-            setLikedMovies={setLikedMovies}
-            searchedMovies={searchedMovies}
-            setSearchedMovies={setSearchedMovies}
-            notMoviesResult={notMoviesResult}
-            setNotMoviesResult={setNotMoviesResult}
-            checkedShort={checkedShort}
-            setCheckedShort={setCheckedShort}
-            handleNotMoviesResult={handleNotMoviesResult}
+              element={Movies} //
+              movies={movies} //
+              // setMovies={setMovies}
+              loggedIn={loggedIn}
+              likedMovies={likedMovies} //
+              setLikedMovies={setLikedMovies} //
+              searchedMovies={searchedMovies}
+              setSearchedMovies={setSearchedMovies}
+              notMoviesResult={notMoviesResult}
+              setNotMoviesResult={setNotMoviesResult}
+              checkedShort={checkedShort}
+              setCheckedShort={setCheckedShort}
+              handleNotMoviesResult={handleNotMoviesResult}
+              isLoading={isLoading} // 
             />}
         />
         <Route path='/saved-movies' element={
             <ProtectedRouteElement
               element={SavedMovies}
-              loggedIn={loggedIn}
-              likedMovies={likedMovies}
-              setLikedMovies={setLikedMovies}
+              loggedIn={loggedIn} //
+              likedMovies={likedMovies} //
+              setLikedMovies={setLikedMovies} //
               notMoviesResult={notMoviesResult}
               setNotMoviesResult={setNotMoviesResult}
+              isLoading={isLoading} //
             />} 
         />
-        <Route path='/profile' element={
+        <Route path='/profile' element={ 
             <ProtectedRouteElement 
+              // V
               element={Profile}
               loggedIn={loggedIn}
               setLoggedIn={setLoggedIn}

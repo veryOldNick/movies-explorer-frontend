@@ -92,22 +92,36 @@ export function addFavoriteMovie(movie) {
 	)
 };
 
-// удаляние liked фильма
+// удаляние любимого фильма
 export function deleteFavoriteMovie(movie) {
-	const token = localStorage.getItem('token');
-	console.log('hey, delete')
+	console.log('hey, delete', movie._id);
 	return (
 		fetch(`${BASE_URL}/movies/${movie._id}`, {
 			method: 'DELETE',
 			headers: {
-				authorization: `Bearer ${token}`,
+				authorization: `Bearer ${localStorage.getItem("token")}`,
 				"Content-Type": "application/json",
 			},
 		}).then((res) => checkResponse(res))
 	)
 };
 
-// получить saved movie
+// export const deleteMovie = (movieId) => {
+//   return fetch(`${BASE__URL}/movies/${movieId}`, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+//     },
+//   })
+//     .then(getResponse)
+//     .then((data) => {
+//       return data;
+//     });
+// };
+
+
+// сохранить любимый movie
 export function getSavedMovies () {
 	const token = localStorage.getItem('token')
 	return fetch(`${BASE_URL}/movies`, {
@@ -118,3 +132,4 @@ export function getSavedMovies () {
 		},
 	}).then((res) => checkResponse(res))
 };
+

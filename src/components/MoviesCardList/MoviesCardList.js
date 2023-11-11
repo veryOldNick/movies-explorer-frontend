@@ -3,24 +3,12 @@ import MoviesCard from '../MoviesCard/MoviesCard'
 function MoviesCardList(
   {
     movies,
+    likedMovies,
+    setLikedMovies,
   }
 ) {
 
-  function createMovieCardElement(movie, id) {
-    console.log(movie, id);
-    return <MoviesCard
-      movie={movie}
-      key={id}
-    />
-  }
-
-  function createMovieArr(movies) {
-    console.log('проверка', movies)
-    return movies.slice(0, 16).map((movieItem) => createMovieCardElement(movieItem, movieItem.id));
-
-  }
-
-  console.log(createMovieArr(movies));
+  // console.log(createMovieArr(movies));
 
   return (
     <>
@@ -28,7 +16,15 @@ function MoviesCardList(
       <section className='movie-cards' aria-label='Карточки фильмов'>
           {/* {notMoviesResult &&  <p className='movie-cards__not-found'>Ничего не найдено</p>} */}
           <ul className='movie-cards__container'>
-            {createMovieArr(movies)}
+            {/* {createMovieArr(movies)} */}
+            {movies.slice(0, 16).map((movie) => (
+            <MoviesCard
+              movie={movie}
+              key={movie.id}           
+              likedMovies={likedMovies}
+              setLikedMovies={setLikedMovies}
+            />
+          ))}
           </ul>
       </section>
         {/* <div className='more-cards' aria-label='Загрузка больше карточек'>
