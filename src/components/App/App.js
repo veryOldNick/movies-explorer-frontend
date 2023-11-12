@@ -25,9 +25,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' }); // текущий юзер 
   const [likedMovies, setLikedMovies] = useState([]); // любимые фильмы
   const [movies, setAllMovie] = useState([]); // фильмы с серера
-  const [searchedMovies, setSearchedMovies] = useState([]);
-  const [notMoviesResult, setNotMoviesResult] = useState(false);
-  const [checkedShort, setCheckedShort] = useState(false);
+  const [searchedMovies, setSearchedMovies] = useState([]); // найденные фильмы
+  const [notMoviesResult, setNotMoviesResult] = useState(false); // статус поиска
+  const [checkedShort, setCheckedShort] = useState(false); // статус продолжительности
 
  
   
@@ -94,8 +94,6 @@ function App() {
       getSavedMovies()
         .then((res) => {
           setLikedMovies(res.filter(movie => movie.owner === currentUser.ownerId));
-          // console.log('успех app-82');
-          // console.log(res);
         })
         .catch((err) => {
           console.log(err);
@@ -114,23 +112,27 @@ function App() {
     
 // --------//
 
+ // Выход авторизованого пользователя
+
   function onSignOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
-    localStorage.removeItem('email');
-    localStorage.removeItem('movieSearchText');
-    localStorage.removeItem('shortMovies');
-    localStorage.removeItem('searchedMovies');
-    localStorage.removeItem('checkedShort');
-    localStorage.removeItem('ownerId');
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('name');
+    // localStorage.removeItem('email');
+    // localStorage.removeItem('movieSearchText');
+    // localStorage.removeItem('shortMovies');
+    // localStorage.removeItem('searchedMovies');
+    // localStorage.removeItem('checkedShort');
+    // localStorage.removeItem('ownerId');
+    localStorage.clear();
     setLoggedIn(false);
     setCurrentUser({ name: '', email: '', ownerId: '' });
     setAllMovie([]);  //??
     setSearchedMovies([]);
     setNotMoviesResult(false);
     navigate('/', { replace: true });
-  }
+  };
 
+ 
 
   function handleNotMoviesResult(shorMovies, SearchedResultMovies) {
     if (movies[0]) {
@@ -190,6 +192,7 @@ function App() {
         />
         <Route path='/saved-movies' element={
             <ProtectedRouteElement
+              movies={movies}
               element={SavedMovies}
               loggedIn={loggedIn} //
               likedMovies={likedMovies} //

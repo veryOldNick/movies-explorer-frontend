@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Preloader from '../Preloader/Preloader'
+import Preloader from '../Preloader/Preloader';
 
 function Movies(
   {
@@ -12,10 +12,6 @@ function Movies(
   }
 ) {
   
-  
-
-
-
   // console.log(movies);
 
   return (
@@ -31,6 +27,7 @@ function Movies(
       movies={movies}
       likedMovies={likedMovies}
       setLikedMovies={setLikedMovies}
+      
     />}
   </main>
   );

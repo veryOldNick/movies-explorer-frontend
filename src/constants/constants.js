@@ -7,12 +7,17 @@ const DATA_NOT_CHANGED_ERROR = 'Такие данные уже использу�
 const NOT_FOUND_ERROR = 'Страница по указанному маршруту не найдена';
 const SERVER_ERROR = 'Ошибка сервера';
 
-
-const SHORT_MOVIES_DURATION = 40;
-
 const CONFLICT_ERR = 409;
 const UNAUTHORIZED_ERR = 401;
 
+const BIG_SCREEN_SIZE = 1220;
+const SMALL_SCREEN_SIZE = 760;
+const CARDS_QUANTITY_DESKTOP = 12;
+const CARDS_QUANTITY_TABLET = 8;
+const CARDS_QUANTITY_MOBILE = 5;
+const CARDS_MORE_DESKTOP = 3;
+const CARDS_MORE_MOBILE = 2;
+const SHORT_MOVIES_DURATION = 40;
 
 
 export {
@@ -24,11 +29,14 @@ export {
   DATA_NOT_CHANGED_ERROR,
   NOT_FOUND_ERROR,
   SERVER_ERROR,
-
-
-
+  BIG_SCREEN_SIZE,
+  SMALL_SCREEN_SIZE,
+  CARDS_QUANTITY_DESKTOP,
+  CARDS_QUANTITY_TABLET,
+  CARDS_QUANTITY_MOBILE,
+  CARDS_MORE_DESKTOP,
+  CARDS_MORE_MOBILE,
   SHORT_MOVIES_DURATION,
   CONFLICT_ERR,
   UNAUTHORIZED_ERR,
-
 };
