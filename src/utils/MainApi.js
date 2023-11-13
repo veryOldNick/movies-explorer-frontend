@@ -1,6 +1,7 @@
 import { checkResponse } from '../utils/checkResponse';
 
 export const BASE_URL = 'http://localhost:3000';
+export const API__URL = "https://api.nomoreparties.co/";
 
 export function registration({name, email, password}) {
   // console.log({name, email, password});
@@ -66,59 +67,82 @@ export function updateUserInfo({ email, name }) {
 };
 
 // сохраняем фильм
-export function addFavoriteMovie(movie) {
-	const token = localStorage.getItem('token')
-	return (
-		fetch(`${BASE_URL}/movies`, {
-			method: 'POST',
-			headers: {
-				authorization: `Bearer ${token}`,
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				country: movie.country,
-				director: movie.director,
-				duration: movie.duration,
-				year: movie.year,
-				description: movie.description,
-				image: `https://api.nomoreparties.co${movie.image.url}`,
-				trailerLink: movie.trailerLink,
-				thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
-				movieId: movie.id,
-				nameRU: movie.nameRU,
-				nameEN: movie.nameEN,
-			}),
-		}).then((res) => checkResponse(res))
-	)
+// export function addFavoriteMovie(movie) {
+// 	const token = localStorage.getItem('token')
+// 	return (
+// 		fetch(`${BASE_URL}/movies`, {
+// 			method: 'POST',
+// 			headers: {
+// 				authorization: `Bearer ${token}`,
+// 				"Content-Type": "application/json",
+// 			},
+// 			body: JSON.stringify({
+// 				country: movie.country,
+// 				director: movie.director,
+// 				duration: movie.duration,
+// 				year: movie.year,
+// 				description: movie.description,
+// 				image: `https://api.nomoreparties.co${movie.image.url}`,
+// 				trailerLink: movie.trailerLink,
+// 				thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
+// 				movieId: movie.id,
+// 				nameRU: movie.nameRU,
+// 				nameEN: movie.nameEN,
+// 			}),
+// 		}).then((res) => checkResponse(res))
+// 	)
+// };
+
+export const saveMovie = (data) => {
+  return fetch(`${BASE_URL}/movies`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: JSON.stringify({
+      nameRU: data.nameRU,
+      nameEN: data.nameEN,
+      country: data.country,
+      duration: data.duration,
+      director: data.director,
+      year: data.year,
+      description: data.description,
+      image: `${API__URL}${data.image.url}`,
+      trailerLink: data.trailerLink,
+      thumbnail: `${API__URL}${data.image.formats.thumbnail.url}`,
+      movieId: data.id,
+    }),
+  }).then(checkResponse);
 };
 
 // удаляние любимого фильма
-export function deleteFavoriteMovie(movie) {
-	console.log('hey, delete', movie._id);
-	return (
-		fetch(`${BASE_URL}/movies/${movie._id}`, {
-			method: 'DELETE',
-			headers: {
-				authorization: `Bearer ${localStorage.getItem("token")}`,
-				"Content-Type": "application/json",
-			},
-		}).then((res) => checkResponse(res))
-	)
-};
-
-// export const deleteMovie = (movieId) => {
-//   return fetch(`${BASE__URL}/movies/${movieId}`, {
-//     method: "DELETE",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-//     },
-//   })
-//     .then(getResponse)
-//     .then((data) => {
-//       return data;
-//     });
+// export function deleteFavoriteMovie(movie) {
+// 	console.log('hey, delete', movie._id);
+// 	return (
+// 		fetch(`${BASE_URL}/movies/${movie._id}`, {
+// 			method: 'DELETE',
+// 			headers: {
+// 				authorization: `Bearer ${localStorage.getItem("token")}`,
+// 				"Content-Type": "application/json",
+// 			},
+// 		}).then((res) => checkResponse(res))
+// 	)
 // };
+
+export const deleteMovie = (movieId) => {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+    .then(checkResponse)
+    .then((data) => {
+      return data;
+    });
+};
 
 
 // сохранить любимый movie
@@ -132,4 +156,3 @@ export function getSavedMovies () {
 		},
 	}).then((res) => checkResponse(res))
 };
-

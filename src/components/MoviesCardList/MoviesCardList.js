@@ -16,6 +16,8 @@ function MoviesCardList(
     movies,
     likedMovies,
     setLikedMovies,
+    savedMovieList,
+    deleteMovieToList,
   }
 ) {
   const { pathname } = useLocation();
@@ -77,6 +79,8 @@ const handleShowMore = () => {
                 movie={movie}
                 key={movie.id}           
                 likedMovies={likedMovies}
+                savedMovieList={savedMovieList}
+                deleteMovieToList={deleteMovieToList}
                 setLikedMovies={setLikedMovies}
               />
             ))}

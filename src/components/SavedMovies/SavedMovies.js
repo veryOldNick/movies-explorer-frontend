@@ -10,7 +10,7 @@ function SavedMovies(
     setLikedMovies,
     notMoviesResult,
     setNotMoviesResult,
-    movies,
+    allMovies,
   }
 ) {
   return (
@@ -20,20 +20,17 @@ function SavedMovies(
     // </main>
     <main className="saved-movies" aria-label="Сохранённые фильмы">
       <SearchForm
-        // value={value}
-        // isValid={isValid}
-        // buttonDisabled={buttonDisabled}
-        // handleSubmit={handleSubmit}
-        // handleChange={handleChange}
-        // handleChecked={handleChecked}
-        // checkedShortSaved={checkedShortSaved}
-
+        // moviesSearch={moviesSearch}
+        // setMoviesSearch={setMoviesSearch}
+        // handleSearchMovies={handleSearchMovies}
+        // isChecked={isChecked}
+        // setIsChecked={setIsChecked}
       />
       {isLoading ? <Preloader /> :
       <MoviesCardList 
         likedMovies={likedMovies}
         setLikedMovies={setLikedMovies}
-        movies={movies}
+        movies={allMovies}
         // notMoviesResult={notMoviesResult}
         // foundSavedMovies={foundSavedMovies} 
       />}

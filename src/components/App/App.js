@@ -13,7 +13,7 @@ import Header from '../Header/Header';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 
-import { checkToken, getUserInfo, getSavedMovies} from '../../utils/MainApi'
+import { checkToken, getUserInfo, getSavedMovies, saveMovie, deleteMovie,} from '../../utils/MainApi';
 import { getAllMovies } from '../../utils/MoviesApi';
 
 function App() {
@@ -25,9 +25,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' }); // текущий юзер 
   const [likedMovies, setLikedMovies] = useState([]); // любимые фильмы
   const [movies, setAllMovie] = useState([]); // фильмы с серера
-  const [searchedMovies, setSearchedMovies] = useState([]); // найденные фильмы
+  // const [searchedMovies, setSearchedMovies] = useState([]); // найденные фильмы
   const [notMoviesResult, setNotMoviesResult] = useState(false); // статус поиска
-  const [checkedShort, setCheckedShort] = useState(false); // статус продолжительности
+  // const [checkedShort, setCheckedShort] = useState(false); // статус продолжительности
+  const [infoTitle, setInfoTitle] = useState("Success"); // информация пользователю
+  // const [savedMovies, setSavedMovies] = useState([]); // сохраненные фильмы
 
  
   
@@ -127,26 +129,55 @@ function App() {
     setLoggedIn(false);
     setCurrentUser({ name: '', email: '', ownerId: '' });
     setAllMovie([]);  //??
-    setSearchedMovies([]);
     setNotMoviesResult(false);
     navigate('/', { replace: true });
   };
 
  
 
-  function handleNotMoviesResult(shorMovies, SearchedResultMovies) {
-    if (movies[0]) {
-      if (checkedShort) {
-        shorMovies.length === 0 ?
-          setNotMoviesResult(true) :
-          setNotMoviesResult(false);
-      } else {
-        SearchedResultMovies.length === 0 ?
-          setNotMoviesResult(true) :
-          setNotMoviesResult(false);
-      }
-    }
-  } 
+  // function handleNotMoviesResult(shorMovies, SearchedResultMovies) {
+  //   if (movies[0]) {
+  //     if (checkedShort) {
+  //       shorMovies.length === 0 ?
+  //         setNotMoviesResult(true) :
+  //         setNotMoviesResult(false);
+  //     } else {
+  //       SearchedResultMovies.length === 0 ?
+  //         setNotMoviesResult(true) :
+  //         setNotMoviesResult(false);
+  //     }
+  //   }
+  // }
+  function savedMovieList(movie) {
+    saveMovie(movie)
+      .then((userMovie) => {
+        setLikedMovies([userMovie, ...likedMovies]);
+      })
+      .catch((err) => {
+        console.log(err);
+        // setInfoTitle("Фильм не сохранился! Попробуйте ещё раз");
+        // setInfoImage(failedImage);
+        // setIsInfoPopupOpen(true);
+      });
+  };
+
+  function deleteMovieToList(movie) {
+    const movieToDelete = likedMovies.find(
+      (m) => movie.id === m.movieId || movie.movieId === m.movieId,
+    );
+    deleteMovie(movieToDelete._id)
+      .then((removedMovie) => {
+        setLikedMovies((state) =>
+          state.filter((item) => item._id !== removedMovie._id),
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        // setInfoTitle("Фильм не удалён! Попробуйте ещё раз");
+        // setInfoImage(failedImage);
+        // setIsInfoPopupOpen(true);
+      });
+  }
   
   return (
     <div className='page'>
@@ -175,31 +206,25 @@ function App() {
         <Route path='/movies' element={
             <ProtectedRouteElement
               element={Movies} //
-              movies={movies} //
-              // setMovies={setMovies}
-              loggedIn={loggedIn}
+              allMovies={movies} //
               likedMovies={likedMovies} //
               setLikedMovies={setLikedMovies} //
-              searchedMovies={searchedMovies}
-              setSearchedMovies={setSearchedMovies}
-              notMoviesResult={notMoviesResult}
-              setNotMoviesResult={setNotMoviesResult}
-              checkedShort={checkedShort}
-              setCheckedShort={setCheckedShort}
-              handleNotMoviesResult={handleNotMoviesResult}
-              isLoading={isLoading} // 
+              isLoading={isLoading} //
+              loggedIn={loggedIn} //
+              savedMovieList={savedMovieList}
+              deleteMovieToList={deleteMovieToList}            
             />}
         />
         <Route path='/saved-movies' element={
             <ProtectedRouteElement
-              movies={movies}
+              allMovies={movies}
               element={SavedMovies}
               loggedIn={loggedIn} //
               likedMovies={likedMovies} //
               setLikedMovies={setLikedMovies} //
-              notMoviesResult={notMoviesResult}
-              setNotMoviesResult={setNotMoviesResult}
               isLoading={isLoading} //
+              savedMovieList={savedMovieList}
+              deleteMovieToList={deleteMovieToList}
             />} 
         />
         <Route path='/profile' element={ 

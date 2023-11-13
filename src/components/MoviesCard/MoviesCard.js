@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { timeTransform } from "../../utils/utils";
-import { addFavoriteMovie, deleteFavoriteMovie } from '../../utils/MainApi';
+// import React, { useEffect, useState } from 'react';
+// import { useLocation } from 'react-router-dom';
+// import { timeTransform } from "../../utils/utils";
+// import { addFavoriteMovie, deleteFavoriteMovie } from '../../utils/MainApi';
+
+import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
+import { API__URL } from "../../utils/MainApi";
+
 
 
 
@@ -11,6 +16,8 @@ export default function MoviesCard(
     movie,
     likedMovies,
     setLikedMovies,
+    savedMovieList,
+    deleteMovieToList,
   }
 ) {
   const { pathname } = useLocation();
