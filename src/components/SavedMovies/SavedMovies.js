@@ -38,6 +38,7 @@ function SavedMovies(
 
     return movies;
   }, [filterString, isChecked, likedMovies, moviesSearch]);
+  
 
   return (
     <main className="saved-movies" aria-label="Сохранённые фильмы">

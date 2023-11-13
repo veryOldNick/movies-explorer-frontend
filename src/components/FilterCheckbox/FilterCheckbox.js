@@ -9,6 +9,7 @@ function Checkbox({
         type='checkbox'
         className='checkbox__field'
         id='toggle'
+        autoComplete='off'
         onChange={checkHandler}
         checked={isChecked}
         aria-label='Поиск короткометражек'/>

@@ -69,8 +69,7 @@ export function updateUserInfo({ email, name }) {
 // сохраняем фильм
 
 export const saveMovie = (data) => {
-	console.log("token", localStorage.getItem("token"));
-  return fetch(`${BASE_URL}/movies`, {
+	return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -94,21 +93,16 @@ export const saveMovie = (data) => {
 
 // удаляние любимого фильма
 
-export const deleteMovie = (movieId) => {
+export const deleteMovie = (_id) => {
 	const token = localStorage.getItem('token')
-	console.log("mainapi97", movieId);
-	console.log("token", localStorage.getItem("token"));
-  return fetch(`${BASE_URL}/movies/${movieId}`, {
+	return fetch(`${BASE_URL}/movies/${_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   })
-    .then(checkResponse)
-    .then((data) => {
-      return data;
-    });
+    .then(checkResponse);
 };
 
 

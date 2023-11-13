@@ -8,7 +8,7 @@ function SearchForm({
   setIsChecked,
   handleSearchMovies,
 }) {
-  const [isEmptyQuery, setIsEmptyQuery] = useState(false); // флаг пустого запроса
+  const [isEmptyQuery, setIsEmptyQuery] = useState(false);
 
     const handleCheckbox = () => {
       handleSearchMovies(!isChecked);
@@ -35,7 +35,7 @@ function SearchForm({
   return (
     <section className='search' aria-label='Поисковая строка'>
       <div className='search__container'>
-        <form className='search-form' onSubmit={handleSubmit} noValidate >
+        <form id='search-form' className='search-form' onSubmit={handleSubmit} noValidate >
           <input 
             className='search-form__input'
             name="Search"

@@ -25,8 +25,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' }); // текущий юзер 
   const [likedMovies, setLikedMovies] = useState([]); // любимые фильмы
   const [movies, setAllMovie] = useState([]); // фильмы с серера
-  const [notMoviesResult, setNotMoviesResult] = useState(false); // статус поиска
-  const [infoTitle, setInfoTitle] = useState("Success"); // информация пользователю
+  // const [notMoviesResult, setNotMoviesResult] = useState(false); // статус поиска
+  
   
   
   useEffect(() => {
@@ -108,7 +108,6 @@ function App() {
     if (loggedIn) {
       loadAllMovies();
       loadLikeMovies();
-      console.log('app122', likedMovies);
     }
   }, [loggedIn]);
 
@@ -122,7 +121,7 @@ function App() {
     setLoggedIn(false);
     setCurrentUser({ name: '', email: '', ownerId: '' });
     setAllMovie([]);  //??
-    setNotMoviesResult(false);
+    // setNotMoviesResult(false);
     navigate('/', { replace: true });
   };
 
