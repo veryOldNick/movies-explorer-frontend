@@ -1,10 +1,11 @@
 import { checkResponse } from '../utils/checkResponse';
 
-export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = 'http://localhost:3000';
 export const API__URL = "https://api.nomoreparties.co/";
+export const BASE__URL = "https://api.movie.nomoredomainsrocks.ru";
 
+// регистрация
 export function registration({name, email, password}) {
-  // console.log({name, email, password});
 	return (
 		fetch(`${BASE_URL}/signup`, {
 			method: 'POST',
@@ -19,6 +20,7 @@ export function registration({name, email, password}) {
 	)
 };
 
+// авторизация
 export function authorization({email, password}) {
 	return (
 		fetch(`${BASE_URL}/signin`, {
@@ -67,7 +69,6 @@ export function updateUserInfo({ email, name }) {
 };
 
 // сохраняем фильм
-
 export const saveMovie = (data) => {
 	return fetch(`${BASE_URL}/movies`, {
     method: "POST",
@@ -92,7 +93,6 @@ export const saveMovie = (data) => {
 };
 
 // удаляние любимого фильма
-
 export const deleteMovie = (_id) => {
 	const token = localStorage.getItem('token')
 	return fetch(`${BASE_URL}/movies/${_id}`, {
@@ -104,7 +104,6 @@ export const deleteMovie = (_id) => {
   })
     .then(checkResponse);
 };
-
 
 // сохранить любимый movie
 export function getSavedMovies () {

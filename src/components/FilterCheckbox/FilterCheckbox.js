@@ -2,7 +2,6 @@ function Checkbox({
   checkHandler, 
   isChecked,
 }) {
-
   return (
     <div className="checkbox">
         <input 

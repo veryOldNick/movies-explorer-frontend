@@ -15,7 +15,6 @@ function MoviesCardList(
   {
     movies,
     likedMovies,
-    setLikedMovies,
     savedMovieList,
     deleteMovieToList,
   }
@@ -63,12 +62,10 @@ useEffect(() => {
 
 const handleShowMore = () => {
   setVisibleCount((prevVisibleCount) => prevVisibleCount + loadMoreCount);
-};
- 
+}; 
 
   return (
-    <>
-       <>
+    <>       
       <section className='movie-cards' aria-label='Карточки фильмов'>
         {visibleMovies.length === 0 ? (
           <p className="movie-cards__not-found">Ничего не найдено</p>
@@ -80,8 +77,7 @@ const handleShowMore = () => {
                 key={movie.id}           
                 likedMovies={likedMovies}
                 savedMovieList={savedMovieList}
-                deleteMovieToList={deleteMovieToList}
-                // setLikedMovies={setLikedMovies}
+                deleteMovieToList={deleteMovieToList}                
               />
             ))}
           </ul>
@@ -95,7 +91,6 @@ const handleShowMore = () => {
           > Ещё 
           </button>
         </div>
-    </>
     </>
   );
 }

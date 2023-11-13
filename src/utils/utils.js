@@ -25,11 +25,9 @@ export const searchMoviesQuery = (movies, searchQuery) => {
   return movies.filter((movie) => {
     const lowerNameRU = movie.nameRU.toLowerCase();
     const lowerNameEN = movie.nameEN.toLowerCase();
-    // const lowerDescription = movie.description.toLowerCase();
-
+    
     return (
       lowerNameRU.includes(lowerQuery) || lowerNameEN.includes(lowerQuery)
-      // lowerDescription.includes(lowerQuery)
     );
   });
 };

@@ -17,7 +17,7 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
   function handleisEdit() {
     setIsEdit(!isEdit);
     setNotificationText('');
-  }
+  };
 
   useEffect(() => {
     if (values['name'] === currentUser.name && values['email'] === currentUser.email) {

@@ -9,26 +9,18 @@ function Movies(
   {
     allMovies,
     likedMovies,
-    // setLikedMovies,
     isLoading,
     savedMovieList,
     deleteMovieToList,
   }
 ) {
-  const [isChecked, setIsChecked] = useState(
-    localStorage.getItem("isShort") === "true",
-  );
-
-  const [moviesSearch, setMoviesSearch] = useState(
-    localStorage.getItem("moviesSearch") || "",
-  );
-
+  const [isChecked, setIsChecked] = useState(localStorage.getItem("isShort") === "true",);
+  const [moviesSearch, setMoviesSearch] = useState(localStorage.getItem("moviesSearch") || "",);
   const [filteredMovies, setFilteredMovies] = useState(
     localStorage.getItem("filteredMovies")
       ? JSON.parse(localStorage.getItem("filteredMovies"))
       : [],
   );
-
   const [isSearchExecuted, setIsSearchExecuted] = useState(false);
 
   function handleSearchMovies(isChecked) {
@@ -46,17 +38,9 @@ function Movies(
     setIsSearchExecuted(true);
   };
 
-  useEffect(() => {
-    localStorage.setItem("isShort", isChecked.toString());
-  }, [isChecked]);
-  
-  // console.log(movies);
+  useEffect(() => {localStorage.setItem("isShort", isChecked.toString())}, [isChecked]);
 
   return (
-    // <main className='movies' aria-label='коллекция'>
-    //   <SearchForm />
-    //   <MoviesCardList />
-    // </main>
     <main className='movies' aria-label='Страница поиска фильмов'>
     <SearchForm
       moviesSearch={moviesSearch}

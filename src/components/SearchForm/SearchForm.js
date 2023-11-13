@@ -29,9 +29,7 @@ function SearchForm({
       }
         
       handleSearchMovies(isChecked);
-    };
-    
-   
+    };       
   return (
     <section className='search' aria-label='Поисковая строка'>
       <div className='search__container'>

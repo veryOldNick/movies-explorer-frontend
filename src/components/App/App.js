@@ -25,10 +25,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' }); // текущий юзер 
   const [likedMovies, setLikedMovies] = useState([]); // любимые фильмы
   const [movies, setAllMovie] = useState([]); // фильмы с серера
-  // const [notMoviesResult, setNotMoviesResult] = useState(false); // статус поиска
-  
-  
-  
+
+    
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -71,8 +69,6 @@ function App() {
     }
   }, [pathname, loggedIn])
 
-  // --------//
-
     // Получение карточек фильмов 
     useEffect(() => {
       function loadAllMovies() {
@@ -111,17 +107,12 @@ function App() {
     }
   }, [loggedIn]);
 
-    
-// --------//
-
  // Выход авторизованого пользователя
-
   function onSignOut() {
     localStorage.clear();
     setLoggedIn(false);
     setCurrentUser({ name: '', email: '', ownerId: '' });
     setAllMovie([]);  //??
-    // setNotMoviesResult(false);
     navigate('/', { replace: true });
   };
 

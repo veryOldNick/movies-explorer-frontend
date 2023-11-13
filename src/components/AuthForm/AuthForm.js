@@ -1,8 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../../images/logo.svg';
 
 export default function AuthForm({ children, name, onSubmit, isLoading, isButtonDisable,  errorText, welcome}) {
-
   const isRegister = name === 'register';
   const navigate = useNavigate();
   const to = name === 'register' ? '/signin' : '/signup';

@@ -11,20 +11,13 @@ export default function MoviesCard(
   }
 ) {
   const { pathname } = useLocation();
-  // const [isLiked, setIsLiked] = useState(false); // лайк, сохранение
-  // const [likeDisabled, setLikeDisabled] = useState(false);
 
   const isSaved = useMemo(() => {
     return likedMovies.some((m) => m.movieId === movie.id);
   }, [movie, likedMovies]);
 
-  function handleSaveMovie() {
-    !isSaved ? savedMovieList(movie) : deleteMovieToList(movie);
-  }
-
-  function handleDeleteMovie() {
-    return deleteMovieToList(movie);
-  } 
+  function handleSaveMovie() {!isSaved ? savedMovieList(movie) : deleteMovieToList(movie)};
+  function handleDeleteMovie() {return deleteMovieToList(movie)}; 
 
   return (
    <li className='movie-card'>
@@ -62,4 +55,4 @@ export default function MoviesCard(
   <p className='movie-card__duration'>{timeTransform(movie.duration)}</p>
 </li>
   );
-}
+};

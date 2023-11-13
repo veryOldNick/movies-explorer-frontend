@@ -7,8 +7,6 @@ import Preloader from '../Preloader/Preloader';
 
 function SavedMovies(
   {
-    allMovies,
-    loggedIn,
     likedMovies,
     isLoading,
     savedMovieList,
@@ -37,8 +35,7 @@ function SavedMovies(
     }
 
     return movies;
-  }, [filterString, isChecked, likedMovies, moviesSearch]);
-  
+  }, [filterString, isChecked, likedMovies, moviesSearch]);  
 
   return (
     <main className="saved-movies" aria-label="Сохранённые фильмы">
@@ -59,6 +56,6 @@ function SavedMovies(
       />}
     </main>
   )
-}
+};
 
 export default SavedMovies

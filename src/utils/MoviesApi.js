@@ -11,7 +11,7 @@ export const getAllMovies = () => {
     if (res.ok) {      
       return res.json();
     } else {
-      throw new Error("Не удалось получить данные по API"); // Генерируем ошибку с сообщением
+      throw new Error("Не удалось получить данные по API");
     }
   }
   );
