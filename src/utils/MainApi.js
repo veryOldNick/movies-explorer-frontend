@@ -67,38 +67,14 @@ export function updateUserInfo({ email, name }) {
 };
 
 // сохраняем фильм
-// export function addFavoriteMovie(movie) {
-// 	const token = localStorage.getItem('token')
-// 	return (
-// 		fetch(`${BASE_URL}/movies`, {
-// 			method: 'POST',
-// 			headers: {
-// 				authorization: `Bearer ${token}`,
-// 				"Content-Type": "application/json",
-// 			},
-// 			body: JSON.stringify({
-// 				country: movie.country,
-// 				director: movie.director,
-// 				duration: movie.duration,
-// 				year: movie.year,
-// 				description: movie.description,
-// 				image: `https://api.nomoreparties.co${movie.image.url}`,
-// 				trailerLink: movie.trailerLink,
-// 				thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
-// 				movieId: movie.id,
-// 				nameRU: movie.nameRU,
-// 				nameEN: movie.nameEN,
-// 			}),
-// 		}).then((res) => checkResponse(res))
-// 	)
-// };
 
 export const saveMovie = (data) => {
+	console.log("token", localStorage.getItem("token"));
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       nameRU: data.nameRU,
@@ -117,25 +93,16 @@ export const saveMovie = (data) => {
 };
 
 // удаляние любимого фильма
-// export function deleteFavoriteMovie(movie) {
-// 	console.log('hey, delete', movie._id);
-// 	return (
-// 		fetch(`${BASE_URL}/movies/${movie._id}`, {
-// 			method: 'DELETE',
-// 			headers: {
-// 				authorization: `Bearer ${localStorage.getItem("token")}`,
-// 				"Content-Type": "application/json",
-// 			},
-// 		}).then((res) => checkResponse(res))
-// 	)
-// };
 
 export const deleteMovie = (movieId) => {
+	const token = localStorage.getItem('token')
+	console.log("mainapi97", movieId);
+	console.log("token", localStorage.getItem("token"));
   return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      authorization: `Bearer ${token}`,
     },
   })
     .then(checkResponse)

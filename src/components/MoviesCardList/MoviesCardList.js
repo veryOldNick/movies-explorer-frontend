@@ -81,7 +81,7 @@ const handleShowMore = () => {
                 likedMovies={likedMovies}
                 savedMovieList={savedMovieList}
                 deleteMovieToList={deleteMovieToList}
-                setLikedMovies={setLikedMovies}
+                // setLikedMovies={setLikedMovies}
               />
             ))}
           </ul>

@@ -25,13 +25,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', ownerId: '' }); // текущий юзер 
   const [likedMovies, setLikedMovies] = useState([]); // любимые фильмы
   const [movies, setAllMovie] = useState([]); // фильмы с серера
-  // const [searchedMovies, setSearchedMovies] = useState([]); // найденные фильмы
   const [notMoviesResult, setNotMoviesResult] = useState(false); // статус поиска
-  // const [checkedShort, setCheckedShort] = useState(false); // статус продолжительности
   const [infoTitle, setInfoTitle] = useState("Success"); // информация пользователю
-  // const [savedMovies, setSavedMovies] = useState([]); // сохраненные фильмы
-
- 
+  
   
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -94,20 +90,25 @@ function App() {
     function loadLikeMovies() {
       setIsLoading(true);
       getSavedMovies()
-        .then((res) => {
-          setLikedMovies(res.filter(movie => movie.owner === currentUser.ownerId));
+        .then((data) => {
+          setLikedMovies(data);
         })
         .catch((err) => {
           console.log(err);
         })
         .finally(() => {
           setIsLoading(false);
-        })
-    };  
+        });
+    }
+    if (loggedIn) {
+      loadAllMovies();
+      loadLikeMovies();
+    }
     
     if (loggedIn) {
       loadAllMovies();
       loadLikeMovies();
+      console.log('app122', likedMovies);
     }
   }, [loggedIn]);
 
@@ -117,14 +118,6 @@ function App() {
  // Выход авторизованого пользователя
 
   function onSignOut() {
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('name');
-    // localStorage.removeItem('email');
-    // localStorage.removeItem('movieSearchText');
-    // localStorage.removeItem('shortMovies');
-    // localStorage.removeItem('searchedMovies');
-    // localStorage.removeItem('checkedShort');
-    // localStorage.removeItem('ownerId');
     localStorage.clear();
     setLoggedIn(false);
     setCurrentUser({ name: '', email: '', ownerId: '' });
@@ -133,31 +126,13 @@ function App() {
     navigate('/', { replace: true });
   };
 
- 
-
-  // function handleNotMoviesResult(shorMovies, SearchedResultMovies) {
-  //   if (movies[0]) {
-  //     if (checkedShort) {
-  //       shorMovies.length === 0 ?
-  //         setNotMoviesResult(true) :
-  //         setNotMoviesResult(false);
-  //     } else {
-  //       SearchedResultMovies.length === 0 ?
-  //         setNotMoviesResult(true) :
-  //         setNotMoviesResult(false);
-  //     }
-  //   }
-  // }
-  function savedMovieList(movie) {
+ function savedMovieList(movie) {
     saveMovie(movie)
       .then((userMovie) => {
         setLikedMovies([userMovie, ...likedMovies]);
       })
       .catch((err) => {
         console.log(err);
-        // setInfoTitle("Фильм не сохранился! Попробуйте ещё раз");
-        // setInfoImage(failedImage);
-        // setIsInfoPopupOpen(true);
       });
   };
 
@@ -173,9 +148,6 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        // setInfoTitle("Фильм не удалён! Попробуйте ещё раз");
-        // setInfoImage(failedImage);
-        // setIsInfoPopupOpen(true);
       });
   }
   
@@ -208,7 +180,6 @@ function App() {
               element={Movies} //
               allMovies={movies} //
               likedMovies={likedMovies} //
-              setLikedMovies={setLikedMovies} //
               isLoading={isLoading} //
               loggedIn={loggedIn} //
               savedMovieList={savedMovieList}
@@ -221,10 +192,9 @@ function App() {
               element={SavedMovies}
               loggedIn={loggedIn} //
               likedMovies={likedMovies} //
-              setLikedMovies={setLikedMovies} //
-              isLoading={isLoading} //
+              isLoading={isLoading} //     
               savedMovieList={savedMovieList}
-              deleteMovieToList={deleteMovieToList}
+              deleteMovieToList={deleteMovieToList} 
             />} 
         />
         <Route path='/profile' element={ 

@@ -1,64 +1,30 @@
-// import React, { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
-// import { timeTransform } from "../../utils/utils";
-// import { addFavoriteMovie, deleteFavoriteMovie } from '../../utils/MainApi';
-
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { API__URL } from "../../utils/MainApi";
-
-
-
-
+import { timeTransform } from "../../utils/utils";
 
 export default function MoviesCard(
   {
     movie,
     likedMovies,
-    setLikedMovies,
     savedMovieList,
     deleteMovieToList,
   }
 ) {
   const { pathname } = useLocation();
-  const [isLiked, setIsLiked] = useState(false); // лайк, сохранение
-  const [likeDisabled, setLikeDisabled] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false); // лайк, сохранение
+  // const [likeDisabled, setLikeDisabled] = useState(false);
 
-  useEffect(() => {
-    if (likedMovies) {
-      likedMovies.map((item) => {
-        if (item.movieId === movie.id) {
-          setIsLiked(true);
-          movie._id = item._id;
-        }
-      });
-    }
-  }, [likedMovies, movie]);
+  const isSaved = useMemo(() => {
+    return likedMovies.some((m) => m.movieId === movie.id);
+  }, [movie, likedMovies]);
 
-  function handleLikeClick() {
-    setLikeDisabled(true);
-    if (isLiked || pathname === "/saved-movies") {
-      deleteFavoriteMovie(movie)
-        .then(() => {
-          setIsLiked(false);
-          setLikedMovies((state) => state.filter(arrayItem => arrayItem._id !== movie._id));
-          setLikeDisabled(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      addFavoriteMovie(movie)
-        .then((res) => {
-          setIsLiked(true);
-          setLikedMovies([...likedMovies, res]);
-          setLikeDisabled(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }  
+  function handleSaveMovie() {
+    !isSaved ? savedMovieList(movie) : deleteMovieToList(movie);
+  }
+
+  function handleDeleteMovie() {
+    return deleteMovieToList(movie);
+  } 
 
   return (
    <li className='movie-card'>
@@ -70,13 +36,28 @@ export default function MoviesCard(
     </a>
     <div className='movie-card__info'>
       <h2 className='movie-card__name'>{movie.nameRU}</h2>
-      <button
+
+      {pathname === "/movies" && (
+        <button
+          className={`movies-card__like ${isSaved ? "movies-card__like_active" : ""}`}
+          onClick={handleSaveMovie}>
+        </button>
+      )}
+
+      {pathname === "/saved-movies" && (
+        <button
+          className="movies-card__like movies-card__like_delete"
+          onClick={handleDeleteMovie}
+        />
+      )}
+
+      {/* <button
         className={`movies-card__like ${pathname === "/saved-movies" && 'movies-card__like_delete'}
-        ${isLiked && 'movies-card__like_active'}`}
+        ${isSaved && 'movies-card__like_active'}`}
         type='button'
-        disabled={likeDisabled}
-        onClick={handleLikeClick}
-      />
+        disabled={handleDeleteMovie}
+        onClick={handleSaveMovie}
+      /> */}
     </div>
   <p className='movie-card__duration'>{timeTransform(movie.duration)}</p>
 </li>

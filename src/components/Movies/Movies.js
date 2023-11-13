@@ -9,7 +9,7 @@ function Movies(
   {
     allMovies,
     likedMovies,
-    setLikedMovies,
+    // setLikedMovies,
     isLoading,
     savedMovieList,
     deleteMovieToList,
@@ -69,7 +69,6 @@ function Movies(
     <MoviesCardList
       movies={filteredMovies}
       likedMovies={likedMovies}
-      setLikedMovies={setLikedMovies}
       isSearchExecuted={isSearchExecuted}
       filteredMovies={filteredMovies}
       savedMovieList={savedMovieList}
