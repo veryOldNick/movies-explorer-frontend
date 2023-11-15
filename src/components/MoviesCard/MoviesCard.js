@@ -29,28 +29,18 @@ export default function MoviesCard(
     </a>
     <div className='movie-card__info'>
       <h2 className='movie-card__name'>{movie.nameRU}</h2>
-
       {pathname === "/movies" && (
         <button
           className={`movies-card__like ${isSaved ? "movies-card__like_active" : ""}`}
           onClick={handleSaveMovie}>
         </button>
       )}
-
       {pathname === "/saved-movies" && (
         <button
           className="movies-card__like movies-card__like_delete"
           onClick={handleDeleteMovie}
         />
       )}
-
-      {/* <button
-        className={`movies-card__like ${pathname === "/saved-movies" && 'movies-card__like_delete'}
-        ${isSaved && 'movies-card__like_active'}`}
-        type='button'
-        disabled={handleDeleteMovie}
-        onClick={handleSaveMovie}
-      /> */}
     </div>
   <p className='movie-card__duration'>{timeTransform(movie.duration)}</p>
 </li>

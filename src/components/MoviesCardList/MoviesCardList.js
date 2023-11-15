@@ -49,19 +49,20 @@ function MoviesCardList(
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-//---------------------//
 
+// количество выводимых карточек в зависимости от блока приложения
 useEffect(() => {
   if (pathname === "/movies") {
     setVisibleMovies(movies.slice(0, visibleCount));
   } else if (pathname === "/saved-movies") {
-    setVisibleMovies(likedMovies.slice(0, visibleCount)); // исправить ошибку с likedMovies
+    setVisibleMovies(likedMovies.slice(0, visibleCount));
     setVisibleCount(likedMovies.length);
   }
 }, [movies, likedMovies, visibleCount, pathname]);
 
-const handleShowMore = () => {
-  setVisibleCount((prevVisibleCount) => prevVisibleCount + loadMoreCount);
+// дополнительные карточки
+function handleShowMore() {
+  setVisibleCount((prevVisibleCount) => prevVisibleCount + loadMoreCount)
 }; 
 
   return (
@@ -83,16 +84,16 @@ const handleShowMore = () => {
           </ul>
         )}          
       </section>
-        <div className='more-cards' aria-label='Загрузка больше карточек'>
-          <button 
-            type='button'
-            className='more-cards__button'
-            onClick={handleShowMore}
-          > Ещё 
-          </button>
-        </div>
+      <div className='more-cards' aria-label='Загрузка больше карточек'>
+        <button 
+          type='button'
+          className='more-cards__button'
+          onClick={handleShowMore}
+        > Ещё 
+        </button>
+      </div>
     </>
-  );
-}
+  )
+};
 
 export default MoviesCardList;

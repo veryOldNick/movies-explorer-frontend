@@ -1,5 +1,6 @@
 export const SERVER_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 
+// получение карточек из внешнего каталога
 export const getAllMovies = () => {
   return fetch(`${SERVER_URL}`, {
     method: "GET",

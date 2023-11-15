@@ -8,7 +8,7 @@ function SearchForm({
   setIsChecked,
   handleSearchMovies,
 }) {
-  const [isEmptyQuery, setIsEmptyQuery] = useState(false);
+  const [isEmptyQuery, setIsEmptyQuery] = useState(false); // флаг заполнения формы
 
     const handleCheckbox = () => {
       handleSearchMovies(!isChecked);
@@ -50,7 +50,7 @@ function SearchForm({
           >
           </button>
           {isEmptyQuery && (
-          <span className="form-search__error-message">
+          <span className="search-form__error-message">
             Нужно ввести ключевое слово
           </span>
         )}

@@ -66,6 +66,14 @@ input::placeholder {
   opacity: 0.7;
 }
 
+.search-form__error-message {
+  padding-top: 6px;
+  font-size: 10px;
+  font-weight: 400;
+  color: #ee3465;
+  line-height: 12px;
+}
+
 @media screen and (max-width: 768px) {
   .search {
     padding: 65px 30px 61px;

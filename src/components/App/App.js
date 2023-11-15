@@ -139,7 +139,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
   
   return (
     <div className='page'>
@@ -149,7 +149,6 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/signup'element={
           <Register
-            // V
             setLoggedIn={setLoggedIn}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
@@ -158,7 +157,6 @@ function App() {
         }/>
         <Route path='/signin' element={
           <Login
-            // V
             setLoggedIn={setLoggedIn}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
@@ -189,7 +187,6 @@ function App() {
         />
         <Route path='/profile' element={ 
             <ProtectedRouteElement 
-              // V
               element={Profile}
               loggedIn={loggedIn}
               setLoggedIn={setLoggedIn}

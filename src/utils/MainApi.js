@@ -10,12 +10,10 @@ export function registration({name, email, password}) {
 		fetch(`${BASE_URL}/signup`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json',
-			      		  'Accept': 'application/json',
-									
+			      		  'Accept': 'application/json',									
 		},
 			body: JSON.stringify({name, email, password})
-		}
-		
+		}		
 		).then((res) => checkResponse(res))
 	)
 };
@@ -55,7 +53,7 @@ export function getUserInfo() {
 	}).then((res) => checkResponse(res))
 };
 
-// update profile
+// обновляем профиль
 export function updateUserInfo({ email, name }) {
 	const token = localStorage.getItem('token')
 	return fetch(`${BASE_URL}/users/me`, {
@@ -69,7 +67,7 @@ export function updateUserInfo({ email, name }) {
 };
 
 // сохраняем фильм
-export const saveMovie = (data) => {
+export function saveMovie(data) {
 	return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
@@ -93,7 +91,7 @@ export const saveMovie = (data) => {
 };
 
 // удаляние любимого фильма
-export const deleteMovie = (_id) => {
+export function deleteMovie(_id) {
 	const token = localStorage.getItem('token')
 	return fetch(`${BASE_URL}/movies/${_id}`, {
     method: "DELETE",
@@ -105,8 +103,8 @@ export const deleteMovie = (_id) => {
     .then(checkResponse);
 };
 
-// сохранить любимый movie
-export function getSavedMovies () {
+// сохранить карточку любимого фильма
+export function getSavedMovies() {
 	const token = localStorage.getItem('token')
 	return fetch(`${BASE_URL}/movies`, {
 		headers: {
