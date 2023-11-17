@@ -73,7 +73,7 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
           setIsLoading(false);
          setDisabledButton(true);
         })
-    }
+    };
 
   return (
     <>

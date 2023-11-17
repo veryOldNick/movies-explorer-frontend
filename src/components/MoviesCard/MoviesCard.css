@@ -1,5 +1,8 @@
 .movie-card {
   list-style: none;
+  display: grid;
+  align-self: flex-start;
+  list-style: none;
   background-color: #222;
 }
 

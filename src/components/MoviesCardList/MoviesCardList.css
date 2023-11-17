@@ -1,7 +1,7 @@
-.movie-cards {
+/* .movie-cards {
   margin: 0 auto;
-  width: 1140px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 70px 70px 30px;
 }
@@ -18,7 +18,7 @@
 .movie-cards__container {
   margin: 0;
   flex: 1 1;
-  width: 100%;;
+  width: 1140px;
   padding: 0;
   list-style-type: none;
   display: grid;
@@ -51,12 +51,21 @@
   opacity: 0.8;
 }
 
+@media screen and (max-width: 1280px) {
+  .movie-cards__container  {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1000px) {
+
+
   .movie-cards {
     padding: 70px 30px 30px;
   }
 
   .movie-cards__container {
+    
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -88,4 +97,112 @@
   .more-cards {
     padding: 50px 40px 80px;
   }
+} */
+
+
+
+.movie-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 70px 30px;
 }
+
+.movie-cards__not-found {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+
+.movie-cards__container {
+  margin: 0;
+  padding: 0;
+  flex: 1 1;
+  align-items: flex-start;
+  width: 1140px;
+  display: grid;
+  gap: 32px 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.more-cards {
+  margin: 0;
+  padding: 50px 0 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.more-cards__button {
+  padding: 0;
+  font-size: 12px;
+  line-height: 15px;
+  background-color: transparent;
+  color: #fff;
+  border: 1px #424242 solid;
+  height: 36px;
+  width: 320px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.more-cards__button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1280px) {
+  .movie-cards__container  {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .movie-cards {
+    padding: 70px 30px 30px;
+  }
+
+  .movie-cards__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .more-cards {
+      padding: 50px 10px 80px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+   .movie-cards__container  {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 30px;
+      row-gap: 36px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .movie-cards {
+    padding: 40px 10px 30px;
+  }
+
+  .movie-cards__container  {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .more-cards {
+    padding: 50px 40px 80px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

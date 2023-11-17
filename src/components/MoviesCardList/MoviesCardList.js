@@ -3,11 +3,15 @@ import { useLocation } from "react-router-dom";
 import MoviesCard from '../MoviesCard/MoviesCard'
 import {
   BIG_SCREEN_SIZE,
+  MED_SCREEN_SIZE,
   SMALL_SCREEN_SIZE,
+  X_SMALL_SCREEN_SIZE,
   CARDS_QUANTITY_DESKTOP,
   CARDS_QUANTITY_TABLET,
+  CARDS_QUANTITY_TABLET_3INLINE,
   CARDS_QUANTITY_MOBILE,
   CARDS_MORE_DESKTOP,
+  CARDS_MORE_TABLET,
   CARDS_MORE_MOBILE,
 } from "../../constants/constants";
 
@@ -27,19 +31,24 @@ function MoviesCardList(
   
   
   // количество показываемых карточек на странице в зависимости от ширины экрана и сколько добавляется кнопкой Еще
+
+  function setsize (visible, more) {
+    setVisibleCount(visible);
+    setLoadMoreCount(more);
+    console.log(3, visible, more);
+  };
+  
+  
   useEffect(() => {
     const handleResize = () => {
-      const screenWidth = window.innerWidth;
+      let screenWidth = window.innerWidth;      
 
       if (screenWidth <= SMALL_SCREEN_SIZE) {
-        setVisibleCount(CARDS_QUANTITY_MOBILE);
-        setLoadMoreCount(CARDS_MORE_MOBILE);
+        setsize(CARDS_QUANTITY_MOBILE, CARDS_MORE_MOBILE);
       } else if (screenWidth <= BIG_SCREEN_SIZE) {
-        setVisibleCount(CARDS_QUANTITY_TABLET);
-        setLoadMoreCount(CARDS_MORE_MOBILE);
+        setsize(CARDS_QUANTITY_TABLET, CARDS_MORE_MOBILE);
       } else {
-        setVisibleCount(CARDS_QUANTITY_DESKTOP);
-        setLoadMoreCount(CARDS_MORE_DESKTOP);
+        setsize(CARDS_QUANTITY_DESKTOP, CARDS_MORE_DESKTOP);
       }
     };
 
@@ -84,14 +93,21 @@ function handleShowMore() {
           </ul>
         )}          
       </section>
-      <div className='more-cards' aria-label='Загрузка больше карточек'>
-        <button 
-          type='button'
-          className='more-cards__button'
-          onClick={handleShowMore}
-        > Ещё 
-        </button>
-      </div>
+      {pathname === "/movies"
+        ? 
+          movies.length > likedMovies.length &&
+            <div className="more-cards">
+              <button
+                className="more-cards__button"
+                type="button"
+                onClick={handleShowMore}
+              >
+                Еще
+              </button>
+            </div>
+            : 
+            ""
+      }
     </>
   )
 };
