@@ -176,7 +176,7 @@ function App() {
         />
         <Route path='/saved-movies' element={
             <ProtectedRouteElement
-              allMovies={movies}
+              movies={movies}
               element={SavedMovies}
               loggedIn={loggedIn} //
               likedMovies={likedMovies} //

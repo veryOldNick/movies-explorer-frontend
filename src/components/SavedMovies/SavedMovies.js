@@ -11,6 +11,7 @@ function SavedMovies(
     isLoading,
     savedMovieList,
     deleteMovieToList,
+    movies,
   }
 ) {
   const [isChecked, setIsChecked] = useState(false);
@@ -24,17 +25,17 @@ function SavedMovies(
   }, [moviesSearch]);
 
   const filteredMovies = useMemo(() => {
-    let movies = likedMovies;
+    let foundMovies = likedMovies;
 
     if (moviesSearch) {
-      movies = searchMoviesQuery(movies, filterString);
+      foundMovies = searchMoviesQuery(foundMovies, filterString);
     }
 
     if (isChecked) {
-      movies = filterMoviesByDuration(movies);
+      foundMovies = filterMoviesByDuration(foundMovies);
     }
 
-    return movies;
+    return foundMovies;
   }, [filterString, isChecked, likedMovies, moviesSearch]);  
 
   return (
@@ -51,8 +52,7 @@ function SavedMovies(
         likedMovies={likedMovies}
         savedMovieList={savedMovieList}         
         deleteMovieToList={deleteMovieToList}
-        filteredMovies={filteredMovies}
-        isLoading={isLoading}
+        movies={filteredMovies}
       />}
     </main>
   )

@@ -49,7 +49,7 @@ function MoviesCardList(
       </section>
       {pathname === "/movies"
         ? 
-          movies.length > likedMovies.length &&
+          movies.length > moviesRender.length &&
             <div className="more-cards">
               <button
                 className="more-cards__button"
