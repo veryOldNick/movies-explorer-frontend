@@ -19,13 +19,13 @@ function MoviesCardList(
   useEffect(() => {setVisibleCount(0)}, [movies]);
 
   const moviesRender = useMemo(() => {
-    const count = size.width < 581 ? 5 : size.width < 801 ? 8 : size.width < 1001 ? 9 : 16;
+    const count = size.width < 581 ? 5 : size.width < 801 ? 8 : size.width < 1141 ? 9 : 16;
     return movies.slice(0, count + visibleCount);
   }, [movies, visibleCount, size.width]);
 
   const handleShowMore = () => {
     setVisibleCount(prev => prev + (
-      size.width >= 1000 ? 4 : size.width >= 800 ? 3 : 2));
+      size.width >= 1140 ? 4 : size.width >= 800 ? 3 : 2));
   };
 
   return (
