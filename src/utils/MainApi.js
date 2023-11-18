@@ -1,8 +1,8 @@
 import { checkResponse } from '../utils/checkResponse';
 
-export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = 'http://localhost:3000';
 export const API__URL = "https://api.nomoreparties.co/";
-// export const BASE_URL = "https://api.movie.nomoredomainsrocks.ru";
+export const BASE_URL = "https://api.movie.nomoredomainsrocks.ru";
 
 // регистрация
 export function registration({name, email, password}) {
