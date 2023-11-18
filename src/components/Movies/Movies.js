@@ -12,6 +12,7 @@ function Movies(
     isLoading,
     savedMovieList,
     deleteMovieToList,
+    setLikedMovies,
   }
 ) {
   const [isChecked, setIsChecked] = useState(localStorage.getItem("isShort") === "true",);
@@ -57,6 +58,7 @@ function Movies(
       filteredMovies={filteredMovies}
       savedMovieList={savedMovieList}
       deleteMovieToList={deleteMovieToList}
+      setLikedMovies={setLikedMovies}
     />}
   </main>
   );

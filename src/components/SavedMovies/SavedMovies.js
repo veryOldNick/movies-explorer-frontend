@@ -12,6 +12,7 @@ function SavedMovies(
     savedMovieList,
     deleteMovieToList,
     movies,
+    setLikedMovies
   }
 ) {
   const [isChecked, setIsChecked] = useState(false);
@@ -53,6 +54,7 @@ function SavedMovies(
         savedMovieList={savedMovieList}         
         deleteMovieToList={deleteMovieToList}
         movies={filteredMovies}
+        setLikedMovies={setLikedMovies}
       />}
     </main>
   )

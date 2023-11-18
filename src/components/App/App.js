@@ -171,7 +171,8 @@ function App() {
               isLoading={isLoading} //
               loggedIn={loggedIn} //
               savedMovieList={savedMovieList}
-              deleteMovieToList={deleteMovieToList}            
+              deleteMovieToList={deleteMovieToList}
+              setLikedMovies={setLikedMovies}           
             />}
         />
         <Route path='/saved-movies' element={
@@ -182,7 +183,8 @@ function App() {
               likedMovies={likedMovies} //
               isLoading={isLoading} //     
               savedMovieList={savedMovieList}
-              deleteMovieToList={deleteMovieToList} 
+              deleteMovieToList={deleteMovieToList}
+              setLikedMovies={setLikedMovies}
             />} 
         />
         <Route path='/profile' element={ 
