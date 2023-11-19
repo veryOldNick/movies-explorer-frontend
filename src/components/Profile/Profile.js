@@ -19,13 +19,15 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
     e.preventDefault();
 
     if (!isSameValues && isValid) {
-      console.log(values);
+      // console.log(values);
+      if (!values.name) {values.name = currentUser.name};
+      if (!values.email) {values.email = currentUser.email};
       updateUserInfo({
                 name: values.name,
                 email: values.email
               })
                 .then((res) => {
-                  console.log(res);
+                  // console.log(res);
                   if (res.email) {
                     setCurrentUser({ name: res.name, email: res.email });
                     localStorage.setItem('name', res.name);
@@ -177,8 +179,7 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
               </button>
             </div>
           </form>
-      </section>
-  );
+      </section>);
 };
 
 export default Profile;
