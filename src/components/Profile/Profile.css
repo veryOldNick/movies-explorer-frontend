@@ -140,8 +140,8 @@
 }
 
 .profile__button_disabled {
-  background: #f8f8f8;
-  color: #c2c2c2;
+  background: transparent;
+  color: #202020;
 }
 
 .profile__button_active {

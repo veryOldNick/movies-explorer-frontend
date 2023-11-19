@@ -5,95 +5,118 @@ import { updateUserInfo } from '../../utils/MainApi';
 import { EMAIL_EXISTS_ERROR, UPDATE_PROFILE_ERROR } from '../../constants/constants'
 
 
-function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
-  const { values, handleChange, errors, isValid, setValues } = useFormWithValidation();
+function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const currentUser = useContext(CurrentUserContext);
 
-  const [disabledButton, setDisabledButton] = useState(true);
-  const [isEdit, setIsEdit] = useState(false);
-  const [notificationText, setNotificationText] = useState('');
+  const [name, setName] = useState(currentUser.name);
+  const [email, setEmail] = useState(currentUser.email);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isSameValues, setIsSameValues] = useState(true);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  function handleisEdit() {
-    setIsEdit(!isEdit);
-    setNotificationText('');
+    if (!isSameValues && isValid) {
+      console.log(values);
+      updateUserInfo({
+                name: values.name,
+                email: values.email
+              })
+                .then((res) => {
+                  console.log(res);
+                  if (res.email) {
+                    setCurrentUser({ name: res.name, email: res.email });
+                    localStorage.setItem('name', res.name);
+                    localStorage.setItem('email', res.email);
+                    
+                    // setNotificationText('Данные обновлены!');
+                  } else {
+                    return Promise.reject(res.status);
+                  }
+                })
+                .catch((err) => {
+                  if (err === 409) {
+                    // setNotificationText(EMAIL_EXISTS_ERROR);
+                  }
+                  // setNotificationText(UPDATE_PROFILE_ERROR);
+                })
+                .finally(() => {
+                  setIsLoading(false);
+                 
+                })
+
+      resetForm();
+    }
+    setIsDisabled(true);
   };
 
   useEffect(() => {
-    if (values['name'] === currentUser.name && values['email'] === currentUser.email) {
-      setDisabledButton(true);
-      console.log('no')
-    } else {
-      setDisabledButton(false);
-      setNotificationText('');
+    let name = true;
+    let email = true;
+    if (values.name) {
+      name = values.name === currentUser.name;
     }
-  }, [values])
-  
+    if (values.email) {
+      email = values.email === currentUser.email;
+    }
+    setIsSameValues(name && email);
+  }, [values.name, values.email, currentUser.name, currentUser.email]);
 
   useEffect(() => {
-    values.name = currentUser.name;
-    values.email = currentUser.email;
-  }, [])
-
- 
+    if (!isLoading) {
+      setName(currentUser.name);
+      setEmail(currentUser.email);
+    }
+  }, [currentUser.name, currentUser.email, isLoading]);
 
   useEffect(() => {
-    if (!values.name || !values.email) {
-      setDisabledButton(true);
-    } 
+    if (values.name) {
+      setName(values.name);
+    }
+    if (values.email) {
+      setEmail(values.email);
+    }
   }, [values.name, values.email]);
- 
-  function handleSubmit(evt) {
-      evt.preventDefault();
-      setIsLoading(true);
-      setNotificationText('');
-  
-      updateUserInfo({
-        name: values.name,
-        email: values.email
-      })
-        .then((res) => {
-          if (res.email) {
-            setCurrentUser({ name: res.name, email: res.email });
-            localStorage.setItem('name', res.name);
-            localStorage.setItem('email', res.email);
-            setIsEdit(false);
-            setNotificationText('Данные обновлены!');
-          } else {
-            return Promise.reject(res.status);
-          }
-        })
-        .catch((err) => {
-          if (err === 409) {
-            setNotificationText(EMAIL_EXISTS_ERROR);
-          }
-          setNotificationText(UPDATE_PROFILE_ERROR);
-        })
-        .finally(() => {
-          setIsLoading(false);
-         setDisabledButton(true);
-        })
-    };
+
+  useEffect(() => {
+    if (currentUser) {
+      resetForm();
+    }
+  }, [currentUser, resetForm]);
+
+  const handleEditButton = () => {
+    setIsDisabled(!isDisabled);
+  };
 
   return (
-    <>
       <section className='profile'>
-        <form className='profile__container' onSubmit={handleSubmit}>
-          <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
+        <form 
+          className='profile__container' 
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <h1 className='profile__title'>{`Привет, ${currentUser.name}!`}</h1>
           <div className='profile__form'>
             <label htmlFor='name' className='profile__label'>
               Имя
             </label>
             <input 
-            className='profile__input'
-            placeholder="Введите имя"
-            type='text'
-            name='name'
-            minLength='2'
-            value={!isEdit ? values.name : currentUser.name || ''}
-            pattern='[a-zA-Zа-яёА-ЯЁ\-\s]+'
+            type="text"
+            name="name"
+            id="profile-input-name"
+            className={`profile__input ${
+              isDisabled || isLoading ? "profile__input_disabled" : ""
+            }`}
+            value={values.name || name}
             onChange={handleChange}
-            // disabled= {!isEdit} 
+            placeholder="Имя"
+            required
+            minLength="2"
+            maxLength="30"
+            autoComplete="off"
+            pattern="^[a-zA-Zа-яёА-ЯЁ -]+$"
+            disabled={isDisabled || isLoading}            
           /> 
           </div>
           <span className='profile__error-message'>{errors.name}</span>
@@ -102,55 +125,59 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
               E-mail
             </label>
             <input
-            className='profile__input'
-            placeholder="Введите email"
-            type='email'
-            name='email'
-            value={!isEdit ? values.email : currentUser.email || ''}
-            pattern='^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$'
-            onChange={handleChange} 
-            // disabled= {!isEdit} 
-            />
+            type="email"
+            name="email"
+            id="profile-input-name"
+            className={`profile__input ${
+              isDisabled || isLoading ? "profile__input_disabled" : ""
+            }`}
+            value={values.email || email}
+            onChange={handleChange}
+            placeholder="Email"
+            autoComplete="off"
+            required
+            pattern="^\S+@\S+\.\S+$"
+            disabled={isDisabled || isLoading}
+            
+          />
           </div>
           <span className='profile__error-message'>{errors.email}</span>
-
-          {isEdit ? (
             <div className='profile__buttons'>
-              <span className='profile__notifaction profile__notifaction_type_error'>{notificationText}</span>
+              <span className='profile__notifaction profile__notifaction_type_error'>{errors.name}</span>
               <button 
-              type='submit'
-              className={`profile__button ${isLoading || !isValid || disabledButton ? 'profile__button_disabled' : 'profile__button_active'}`}
-              aria-label='Сохранить данные'
-              // disabled={isLoading || !isValid || disabledButton}
+              type="submit"
+              className={`profile__button ${
+                !isValid || isLoading || isSameValues
+                  ? "profile__button_disabled"
+                  : ""
+              }`}
+              disabled={!isValid || isLoading || isSameValues}
               >
                 Сохранить
               </button>
             </div>
-          ) : (
             <div className='profile__buttons'>
-              <span className='profile__notifaction profile__notifaction_type_sucсess'>{notificationText}</span>
-              <button 
-                type='button' 
-                className='profile__link profile__link-edit' 
-                onClick={handleisEdit} 
-                aria-label='Редактировать профиль' 
+              <span className='profile__notifaction profile__notifaction_type_sucсess'>{errors.name}</span>
+              <button
+                type="button"
+                className="profile__link profile__link-edit"
+                onClick={handleEditButton}
               >
-                Редактировать
+                {isDisabled ? "Редактировать" : "Отменить"}
               </button>
               <button 
                 type='button' 
                 className='profile__link profile__link-exit' 
                 onClick={onSignOut} 
-                href='/' aria-label='Выйти из аккаунта'
+                href='/' aria-label='Выйти из аккаунта'         
+              
               >
                 Выйти из аккаунта
               </button>
             </div>
-          )}
           </form>
       </section>
-    </>
   );
-}
+};
 
-export default Profil;
+export default Profile;
