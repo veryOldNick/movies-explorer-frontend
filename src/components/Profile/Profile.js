@@ -13,6 +13,7 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
   const [email, setEmail] = useState(currentUser.email);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isSameValues, setIsSameValues] = useState(true);
+  const [notificationText, setNotificationText] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,16 +31,16 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
                     localStorage.setItem('name', res.name);
                     localStorage.setItem('email', res.email);
                     
-                    // setNotificationText('Данные обновлены!');
+                    setNotificationText('Данные обновлены!');
                   } else {
                     return Promise.reject(res.status);
                   }
                 })
                 .catch((err) => {
                   if (err === 409) {
-                    // setNotificationText(EMAIL_EXISTS_ERROR);
+                    setNotificationText(EMAIL_EXISTS_ERROR);
                   }
-                  // setNotificationText(UPDATE_PROFILE_ERROR);
+                  setNotificationText(UPDATE_PROFILE_ERROR);
                 })
                 .finally(() => {
                   setIsLoading(false);
@@ -143,7 +144,7 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
           </div>
           <span className='profile__error-message'>{errors.email}</span>
             <div className='profile__buttons'>
-              <span className='profile__notifaction profile__notifaction_type_error'>{errors.name}</span>
+              <span className='profile__notifaction profile__notifaction_type_error'>{notificationText}</span>
               <button 
               type="submit"
               className={`profile__button ${
@@ -157,7 +158,7 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
               </button>
             </div>
             <div className='profile__buttons'>
-              <span className='profile__notifaction profile__notifaction_type_sucсess'>{errors.name}</span>
+              <span className='profile__notifaction profile__notifaction_type_sucсess'>{notificationText}</span>
               <button
                 type="button"
                 className="profile__link profile__link-edit"
