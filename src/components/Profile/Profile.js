@@ -8,6 +8,7 @@ import { EMAIL_EXISTS_ERROR, UPDATE_PROFILE_ERROR } from '../../constants/consta
 function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser);
 
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
@@ -15,13 +16,21 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
   const [isSameValues, setIsSameValues] = useState(true);
   const [notificationText, setNotificationText] = useState('');
 
+  useEffect(() => {
+    setName(currentUser?.name);
+    setEmail(currentUser?.email);
+  }, [currentUser]);
+
+  console.log(name);
+  console.log(email);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!isSameValues && isValid) {
-      // console.log(values);
-      if (!values.name) {values.name = currentUser.name};
-      if (!values.email) {values.email = currentUser.email};
+    // if (!isSameValues && isValid) {
+      if ( isValid ) {
+      console.log('values', values);
+
       updateUserInfo({
                 name: values.name,
                 email: values.email
@@ -54,43 +63,41 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
     setIsDisabled(true);
   };
 
-  useEffect(() => {
-    let name = true;
-    let email = true;
-    if (values.name) {
-      name = values.name === currentUser.name;
-    }
-    if (values.email) {
-      email = values.email === currentUser.email;
-    }
-    setIsSameValues(name && email);
-  }, [values.name, values.email, currentUser.name, currentUser.email]);
+  // useEffect(() => {
+  //   let name = true;
+  //   let email = true;
+  //   if (values.name) {
+  //     name = values.name === currentUser.name;
+  //   }
+  //   if (values.email) {
+  //     email = values.email === currentUser.email;
+  //   }
+  //   setIsSameValues(name && email);
+  // }, [values.name, values.email, currentUser.name, currentUser.email]);
 
-  useEffect(() => {
-    if (!isLoading) {
-      setName(currentUser.name);
-      setEmail(currentUser.email);
-    }
-  }, [currentUser.name, currentUser.email, isLoading]);
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     setName(currentUser.name);
+  //     setEmail(currentUser.email);
+  //   }
+  // }, [currentUser.name, currentUser.email, isLoading]);
 
-  useEffect(() => {
-    if (values.name) {
-      setName(values.name);
-    }
-    if (values.email) {
-      setEmail(values.email);
-    }
-  }, [values.name, values.email]);
+  // useEffect(() => {
+  //   if (values.name) {
+  //     setName(values.name);
+  //   }
+  //   if (values.email) {
+  //     setEmail(values.email);
+  //   }
+  // }, [values.name, values.email]);
 
-  useEffect(() => {
-    if (currentUser) {
-      resetForm();
-    }
-  }, [currentUser, resetForm]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     resetForm();
+  //   }
+  // }, [currentUser, resetForm]);
 
-  const handleEditButton = () => {
-    setIsDisabled(!isDisabled);
-  };
+  const handleEditButton = () => {setIsDisabled(!isDisabled)};
 
   return (
       <section className='profile'>
@@ -150,11 +157,13 @@ function Profile({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
               <button 
               type="submit"
               className={`profile__button ${
-                !isValid || isLoading || isSameValues
+                // !isValid || isLoading || isSameValues
+                !isValid || isLoading 
                   ? "profile__button_disabled"
                   : ""
               }`}
-              disabled={!isValid || isLoading || isSameValues}
+              // disabled={!isValid || isLoading || isSameValues}
+              disabled={!isValid || isLoading }
               >
                 Сохранить
               </button>

@@ -5,6 +5,6 @@
 https://github.com/veryOldNick/movies-explorer-frontend/pull/2
 
 https://api.movie.nomoredomainsrocks.ru
-ls
+https://movie.nomoredomainsrocks.ru
 
 IP 158.160.0.131
