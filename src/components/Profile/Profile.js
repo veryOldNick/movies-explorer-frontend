@@ -90,10 +90,11 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
             type='text'
             name='name'
             minLength='2'
-            value={isEdit ? values['name'] : currentUser.name || ''}
+            value={!isEdit ? values.name : currentUser.name || ''}
             pattern='[a-zA-Zа-яёА-ЯЁ\-\s]+'
             onChange={handleChange}
-            disabled= {!isEdit} /> 
+            // disabled= {!isEdit} 
+          /> 
           </div>
           <span className='profile__error-message'>{errors.name}</span>
           <div className='profile__form'>
@@ -105,10 +106,11 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
             placeholder="Введите email"
             type='email'
             name='email'
-            value={isEdit ? values['email'] : currentUser.email || ''}
+            value={!isEdit ? values.email : currentUser.email || ''}
             pattern='^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$'
             onChange={handleChange} 
-            disabled= {!isEdit} />
+            // disabled= {!isEdit} 
+            />
           </div>
           <span className='profile__error-message'>{errors.email}</span>
 
@@ -119,17 +121,28 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
               type='submit'
               className={`profile__button ${isLoading || !isValid || disabledButton ? 'profile__button_disabled' : 'profile__button_active'}`}
               aria-label='Сохранить данные'
-              disabled={isLoading || !isValid || disabledButton}>
+              // disabled={isLoading || !isValid || disabledButton}
+              >
                 Сохранить
               </button>
             </div>
           ) : (
             <div className='profile__buttons'>
               <span className='profile__notifaction profile__notifaction_type_sucсess'>{notificationText}</span>
-              <button type='button' className='profile__link profile__link-edit' onClick={handleisEdit} aria-label='Редактировать профиль' >
+              <button 
+                type='button' 
+                className='profile__link profile__link-edit' 
+                onClick={handleisEdit} 
+                aria-label='Редактировать профиль' 
+              >
                 Редактировать
               </button>
-              <button type='button' className='profile__link profile__link-exit' onClick={onSignOut} href='/' aria-label='Выйти из аккаунта'>
+              <button 
+                type='button' 
+                className='profile__link profile__link-exit' 
+                onClick={onSignOut} 
+                href='/' aria-label='Выйти из аккаунта'
+              >
                 Выйти из аккаунта
               </button>
             </div>
